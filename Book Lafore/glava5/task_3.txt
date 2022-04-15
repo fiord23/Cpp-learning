@@ -1,0 +1,24 @@
+//task_3
+#include <iostream>
+using namespace std;
+
+void zeroSmaller(int& number1, int& number2);
+
+int main() {
+
+	int	chislo1, chislo2;
+	cout << "Input  first number: "; cin >> chislo1;
+	cout << "Input  second number: "; cin >> chislo2;
+	zeroSmaller(chislo1, chislo2);
+	cout << "Result" << endl; 
+	cout << "first number  " << chislo1 << endl;
+	cout << "second number  " << chislo2 << endl;
+	return 0;
+}
+
+void zeroSmaller(int& number1, int& number2)
+{
+	if (number1 < number2)
+		number1 = 0;
+	else number2 = 0;
+}

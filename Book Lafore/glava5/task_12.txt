@@ -1,0 +1,88 @@
+//task_12
+#include <iostream>
+#include <conio.h>
+using namespace std;
+
+struct fract
+{
+	int numerator;
+	int denominator;
+};
+
+fract fadd(fract fract1, fract fract2);
+fract fsub(fract fract1, fract fract2);
+fract fmul(fract fract1, fract fract2);
+fract fdiv(fract fract1, fract fract2);
+
+
+int main()
+{
+	fract fract1, fract2, fractres;
+	char operation;
+	char dummychar = '/';
+
+	do
+	{
+		cout << endl << "First number: ";
+		cin >> fract1.numerator >> dummychar >> fract1.denominator;
+		cout << "operation: ";
+		cin >> operation;
+		cout << "Second number: ";
+		cin >> fract2.numerator >> dummychar >> fract2.denominator;
+		switch (operation)
+		{
+		case '+':
+			fractres = fadd(fract1, fract2);
+			break;
+		case '-':
+			fractres = fsub(fract1, fract2);
+			break;
+
+		case '*':
+			fractres = fmul(fract1, fract2);
+			break;
+
+		case '/':
+			fractres = fdiv(fract1, fract2);
+			break;
+		default: cout << endl << "wrong!" << endl;
+
+
+		}
+		cout << "Result = " << fractres.numerator << dummychar << fractres.denominator << endl;
+		cout << endl << " More(y/n)? ";
+	} while (_getche() == 'y');
+	return 1;
+}
+
+fract fadd(fract fract1, fract fract2) 
+{
+	fract fractres;
+	fractres.numerator = fract1.numerator * fract2.denominator + fract1.denominator * fract2.numerator;
+	fractres.denominator = fract1.denominator * fract2.denominator;
+	return fractres;
+}
+
+fract fsub(fract fract1, fract fract2)
+{
+	fract fractres;
+	fractres.numerator = fract1.numerator * fract2.denominator - fract1.denominator * fract2.numerator;
+	fractres.denominator = fract1.denominator * fract2.denominator;
+	return fractres;
+}
+
+fract fmul(fract fract1, fract fract2)
+{
+	fract fractres;
+	fractres.numerator = fract1.numerator * fract2.numerator;
+	fractres.denominator = fract1.denominator * fract2.denominator;
+	return fractres;
+}
+
+fract fdiv(fract fract1, fract fract2) 
+{
+	fract fractres;
+	fractres.numerator = fract1.numerator * fract2.denominator;
+	fractres.denominator = fract1.denominator * fract2.numerator;
+	return fractres;
+}

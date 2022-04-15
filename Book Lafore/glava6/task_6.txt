@@ -1,0 +1,77 @@
+//task_6
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+
+char slash = '/';
+enum etype { laborer, secretary, manager, accountant, executive, researcher };
+
+class date 
+{
+public:
+	int day;
+	int month;
+	int year;
+};
+
+class employee
+{
+private:
+	int empolyerid;
+	float salary;
+	date data;
+	etype work;
+public:
+	void getemploy()
+	{
+		cout << "write Empolyee Number: "; cin >> empolyerid;
+		cout << "Write salary Employee: "; cin >> salary;
+		cout << "Write start date employee DD/MM/YYYY:  "; cin >> data.day >> slash >> data.month >> slash >> data.year;
+		cout << "Write first letter profession: " << endl;
+		cout << "laborer, secretary, manager, accountant, executive, researcher: ";
+		char prof;
+		cin >> prof;
+		switch (prof) 
+		{
+		case 'l': work = laborer; break;
+		case 's': work = secretary; break;
+		case 'm': work = manager; break;
+		case 'a': work = accountant; break;
+		case 'e': work = executive; break;
+		case 'r': work = researcher; break;
+		default: cout << endl << "wrong letter!" << endl;
+		}
+
+	}
+	void putemploy()
+	{
+		cout << setw(40) << setfill('-') << '-' << endl;
+		cout << "Employee number is: " << empolyerid << endl;
+		cout << "Employee salary is: " << salary << endl;
+		cout << "Start date employee is: " << data.day << slash << data.month << slash << data.year << endl;
+		cout << "Work is: ";
+		switch (work) 
+		{
+		case 0: cout << "laborer"; break;
+		case 1: cout << "secretary"; break;
+		case 2: cout << "manager"; break;
+		case 3: cout << "accountant"; break;
+		case 4: cout << "executive"; break;
+		case 5: cout << "researcher"; break;
+		}
+		cout << endl;
+	}
+};
+
+int main()
+{
+	employee employer1, employer2, employer3;
+	employer1.getemploy();
+	employer2.getemploy();
+	employer3.getemploy();
+	employer1.putemploy();
+	employer2.putemploy();
+	employer3.putemploy();
+	return 0;
+}

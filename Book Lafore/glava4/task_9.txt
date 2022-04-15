@@ -1,0 +1,22 @@
+//task_9
+#include <iostream>
+using namespace std;
+
+struct time
+{
+	unsigned int hours;
+	unsigned int minutes;
+	unsigned int seconds;
+};
+
+int main() 
+{
+	time t1;
+	unsigned int resultsec;
+	char slash = '/';
+	cout << "Time: H/M/S ";
+	cin >> t1.hours >> slash >> t1.minutes >> slash >> t1.seconds;
+	resultsec = t1.hours * 3600 + t1.minutes * 60 + t1.seconds;
+	cout << "seconds is " << resultsec;
+	return 0;
+}

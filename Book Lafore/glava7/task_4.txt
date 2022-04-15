@@ -1,0 +1,49 @@
+//task_4
+#include <iostream>
+using namespace std;
+const int SIZE = 6;
+int maxint(int arr[], int);
+
+int main()
+{
+	
+	int indexmax = 0; int max;
+	int numbers[SIZE];
+	
+	cout << "Write 6 numbers\n"; 
+	for (int j = 0; j < SIZE; j++)
+	{
+		cin >> numbers[j];
+	}
+
+	max = maxint(numbers, SIZE);
+
+	for (int j = 0; j < SIZE; j++)
+	{
+		if (numbers[j] == max)
+		{
+			indexmax = j + 1;
+			break;
+		}
+	}
+
+	cout << endl << "MAX = " << max;
+	cout << endl << "Indedx = " << indexmax;
+
+	return 0;
+}
+
+int maxint(int arr[], const int SIZE )
+{
+	int maxnum = arr[0];
+	int indexmax;
+	for (int i = 0; i < SIZE; i++)
+	{
+		if (arr[i] > maxnum)
+		{
+			maxnum = arr[i];
+		}
+	}
+
+	return maxnum;
+}

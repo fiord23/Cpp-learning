@@ -1,0 +1,31 @@
+//task_12
+#include <iostream>
+#include <conio.h>
+using namespace std;
+int main() 
+{
+	int a, b, c, d;
+	char operation;
+	char dummychar = '/';
+
+	do 
+	{
+		cout <<endl <<  "First number: ";
+		cin >> a >> dummychar >> b;
+		cout << "operation: ";
+		cin >> operation;
+		cout << "Second number: ";
+		cin >> c >> dummychar >> d; 
+		switch (operation) 
+		{
+		case '+': cout << endl << "Result = " << (a * d + b * c) <<'/' << (b * d) << endl; break;
+		case '-': cout << endl << "Result = " << (a * d - b * c) << '/' << (b * d) << endl; break;
+		case '*': cout << endl << "Result = " << (a * c) << '/' << (b * d) << endl; break;
+		case '/': cout << endl << "Result = " << (a * d) << '/'  << (b * d) << endl; break;
+		default: cout << endl << "wrong!" << endl;
+			
+		}
+	cout <<endl << " More(y/n)? ";
+	} while (_getche() == 'y');
+	return 1;
+}

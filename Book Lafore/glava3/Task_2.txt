@@ -1,0 +1,27 @@
+//task_2
+#include <iostream>
+#include <conio.h>
+using namespace std;
+int main() 
+{
+	int variant;
+	double temperature, result;
+	cout << "1 - Celcium to Fahrenheit" << endl << "2 - Fahrenheit to Celcium" << endl << "Your choice: ";
+	cin >> variant;
+	cout << "temperature = ";
+	cin >> temperature;
+
+	if (variant == 1)
+	{
+		result = temperature * 9 / 5 + 32;
+		cout << "Fahrenheit = " << result;
+	}
+		
+	if (variant == 2)
+	{
+		result = (temperature - 32) * 5 / 9;
+		cout << "Celcium = " << result;
+	}
+		
+	return 1;
+}

@@ -1,0 +1,45 @@
+//task_6
+#include <iostream>
+using namespace std;
+
+struct time
+{
+	unsigned int hours;
+	unsigned int minutes;
+	unsigned int seconds;
+};
+
+long time_to_secs(time t);
+time secs_to_time(long secs);
+
+int main()
+{
+	time t1;
+	long seconds;
+	char slash = '/';
+	cout << "Time: HH/MM/SS ";
+	cin >> t1.hours >> slash >> t1.minutes >> slash >> t1.seconds;
+	seconds = time_to_secs(t1);
+	cout << "seconds is " << seconds << endl;
+	t1 = secs_to_time(seconds);
+	cout << "Result time: " << t1.hours << slash << t1.minutes << slash << t1.seconds;
+	return 0;
+}
+
+long time_to_secs(time t) 
+{
+	long resultsec;
+	resultsec = t.hours * 3600 + t.minutes * 60 + t.seconds;
+	return resultsec;
+}
+
+time secs_to_time(long secs) 
+{
+	time restime;
+	restime.hours = secs / 3600;
+	secs = secs - restime.hours * 3600;
+	restime.minutes = secs / 60;
+	secs = secs - restime.minutes * 60;
+	restime.seconds = secs;
+	return restime;
+}

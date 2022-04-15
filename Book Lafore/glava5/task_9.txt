@@ -1,0 +1,43 @@
+//task_9
+#include <iostream>
+using namespace std;
+
+struct time
+{
+	unsigned int hours;
+	unsigned int minutes;
+	unsigned int seconds;
+};
+
+void swap(time& number1, time& number2);
+
+int main() {
+	time t1, t2;
+	char slash = '/';
+	cout << "Input  first time H/M/S: ";
+	cin >> t1.hours >> slash >> t1.minutes >> slash >> t1.seconds;
+	cout << "Input  second time H/M/S: ";
+	cin >> t2.hours >> slash >> t2.minutes >> slash >> t2.seconds;
+	swap(t1, t2);
+	cout << "Result" << endl;
+	cout << "first time: " << t1.hours << slash << t1.minutes << slash << t1.seconds << endl;
+	cout << "second time: " << t2.hours << slash << t2.minutes << slash << t2.seconds << endl;
+	return 0;
+}
+
+void swap(time& number1, time& number2)
+{
+	time temp;
+	//change hours
+	temp.hours = number1.hours;
+	number1.hours = number2.hours;
+	number2.hours = temp.hours;
+	//change minutes
+	temp.minutes = number1.minutes;
+	number1.minutes = number2.minutes;
+	number2.minutes = temp.minutes;
+	// change secomds
+	temp.seconds = number1.seconds;
+	number1.seconds = number2.seconds;
+	number2.seconds = temp.seconds;
+}

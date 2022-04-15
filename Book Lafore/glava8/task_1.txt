@@ -1,0 +1,69 @@
+// task_1
+#include <iostream> 
+using namespace std;
+///////////////////////////////////////////////////////////
+class Distance // класс английских мер длины
+{
+private:
+	int feet;
+	float inches;
+public:
+	// конструктор без параметров
+	Distance() : feet(0), inches(0.0)
+	{ }
+	// конструктор с двумя параметрами
+	Distance(int ft, float in) : feet(ft), inches(in)
+	{ }
+	// получение информации от пользователя
+	void getdist()
+	{
+		cout << "\nWrite feet: "; cin >> feet;
+		cout << "Write inches: "; cin >> inches;
+	}
+	// показ информации
+	void showdist() const
+	{
+		cout << feet << "\'-" << inches << '\"';
+	}
+	// сложение с присвоением
+	void operator+=(Distance);
+	Distance operator-(Distance);
+};
+///////////////////////////////////////////////////////////
+void Distance::operator+=(Distance d2)
+{
+	feet += d2.feet; // складываем футы
+	inches += d2.inches; // складываем дюймы
+	if (inches >= 12.0) // если дюймов больше 12
+	{
+		inches -= 12.0; // то уменьшаем дюймы на 12
+		feet++; // увеличиваем футы на 1
+	}
+}
+
+Distance Distance::operator-(Distance d2)
+{
+	float i = inches - d2.inches;
+	if (i < 0)
+	{
+		i+=12;
+		feet--;
+	}
+	int f = feet - d2.feet;
+	return Distance(f, i);
+}
+///////////////////////////////////////////////////////////
+int main()
+{
+	Distance dist1, dist2, dist3; // определяем переменную
+	cout << "\ndist1 = ";
+	dist1.getdist(); // и вводим информацию
+	cout << "\ndist2 = "; 
+	dist2.getdist();
+	dist3 = dist1 - dist2;
+	cout << "\nAfter sub:";
+	cout << "\ndist3 = "; dist3.showdist();
+	cout << endl;
+	return 0;
+}
+

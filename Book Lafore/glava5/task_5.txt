@@ -1,0 +1,27 @@
+//task_5
+#include <iostream>
+#include "conio.h"
+using namespace std;
+
+unsigned long hms_to_secs(int h, int m, int s);
+
+
+int main()
+{
+	int hours, minutes, seconds;
+	char slash = '/';
+
+	do 
+	{
+		cout << endl << "input time: H/M/S: "; cin >> hours >> slash >> minutes >> slash >> seconds;
+		cout << "Seconds is " << hms_to_secs(hours, minutes, seconds) << endl;
+		cout << "Continiue (y/n)? ";
+	} while (_getche() != 'n');
+	return 0;
+}
+
+unsigned long hms_to_secs(int h, int m, int s)
+{
+	return (h * 3600 + m * 60 + s);
+}
+

@@ -1,0 +1,22 @@
+//task_2
+#include <iostream>
+using namespace std;
+
+double power(double n, int p = 2);
+
+int main() {
+	double number;
+	int	pow;
+	cout << "Input number: "; cin >> number;
+	cout << "Input power: "; cin >> pow;
+	cout << "Result = " << power(number, pow) << endl; 
+	return 0;
+}
+
+double power(double n, int p)
+{
+	double result = 1.0;
+	for (int i = 0; i < p; i++)
+		result = result * n;
+	return result;
+}

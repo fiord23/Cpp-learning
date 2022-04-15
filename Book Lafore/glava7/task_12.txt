@@ -1,0 +1,119 @@
+// task_12
+#include <iostream> 
+#include <cstdlib>
+#include <iomanip>
+#include <stdlib.h>
+#include <math.h>
+using namespace std;
+const int MAX = 20;
+
+class moneys
+{
+private:
+	char money[MAX];
+	long double result;
+public:
+	moneys() {};
+	moneys(long double mon)
+	{
+		result = mon;
+	}
+	void getdata()
+	{
+		moneys temp;
+		char c;
+		int count = 0;
+		cout << '$';
+		do
+		{
+			c = getchar();
+			if (c != ' ')
+			{
+				money[count] = c;
+				count++;
+			}
+		} while (c != '\n');
+		result = atof(money);
+	}
+
+	void printresult()
+	{
+		cout << setiosflags(ios::fixed) << setiosflags(ios::showpoint) << setprecision(2) << result;
+	}
+
+	void ldtoms()
+	{
+		for (int k = 0; k < MAX; k++)
+		{
+			money[k] = 0;
+		}
+		long int fracint, intvalue;
+		int end = 0;
+		int lenght;
+		char temp;
+		long double integ, frac;
+		frac = modf(result, &integ);
+		intvalue = static_cast<int>(result);
+		fracint = frac * 100;
+		int i = 0;
+
+		while (fracint > 0)
+		{
+
+			money[i] = (fracint % 10 + '0');
+			fracint = fracint / 10;
+			i++;
+		}
+		money[i] = '.';
+		i++;
+		while (intvalue > 0)
+		{
+			if (((i + 2) % 4) == 0)
+			{
+				money[i] = ' ';
+				i++;
+			}
+			money[i] = (intvalue % 10 + '0');
+			intvalue = intvalue / 10;
+			i++;
+
+		}
+
+
+		lenght = strlen(money);
+		for (int i = 0; i < (lenght / 2 + 1); i++)
+		{
+			temp = money[i];
+			money[i] = money[lenght - i];
+			money[lenght - i] = temp;
+		}
+		int j = 0;
+		while (!(money[j] > '0' && money[j] < '9'))
+		{
+			j++;
+		}
+		cout << '$';
+		for (j; j <= lenght; j++)
+		{
+			cout << money[j];
+		}
+
+
+	}
+	void moneyadd(moneys mon1, moneys mon2)
+	{
+		result = mon1.result + mon2.result;
+	}
+
+
+};
+/////////////////////////////////////////////////////////////
+int main()
+{
+	moneys money1, money2, moneyres;
+	money1.getdata();
+	money2.getdata();
+	moneyres.moneyadd(money1, money2);
+	moneyres.ldtoms();
+	return 0;
+}

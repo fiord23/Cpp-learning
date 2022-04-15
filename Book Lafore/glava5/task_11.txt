@@ -1,0 +1,59 @@
+//task_11
+#include <iostream>
+using namespace std;
+
+struct sterling
+{
+	int pounds;
+	int shillings;
+	int pence;
+};
+
+sterling moneyrecieve(void);
+sterling moneysum(sterling money1, sterling money2);
+void moneyprint(sterling money);
+
+
+int main()
+{
+	sterling value1, value2, valuesum;
+	value1 = moneyrecieve();
+	value2 = moneyrecieve();
+	valuesum = moneysum(value1, value2);
+	moneyprint(valuesum);
+	return 0;
+}
+
+sterling moneyrecieve() 
+{
+	sterling moneyout;
+	char dot = '.';
+	cout << "Input sterling in old format: J";
+	cin >> moneyout.pounds >> dot >> moneyout.shillings >> dot >> moneyout.pence;
+	return moneyout;
+}
+
+sterling moneysum(sterling money1, sterling money2)
+{
+	sterling result;
+	result.pounds = money1.pounds + money2.pounds;
+	result.shillings = money1.shillings + money2.shillings;
+	result.pence = money1.pence + money2.pence;
+	if (result.pence > 11) 
+	{
+		result.shillings++;
+		result.pence -= 12;
+	}
+	if (result.shillings > 19) 
+	{
+		result.pounds++;
+		result.shillings-=20;
+	}
+	return result;
+}
+
+void moneyprint(sterling money) 
+{
+	char dot = '.';
+	cout << "Money old format is " << money.pounds << dot << money.shillings << dot << money.pence;
+ }

@@ -1,0 +1,24 @@
+//task_10
+#include <iostream>
+#include <conio.h>
+using namespace std;
+int main() 
+{
+	int startmoney, targetmoney;
+	int years = 0;
+	double procent;
+	cout << "startmoney: ";
+	cin >> startmoney;
+	cout << "targetmoney: ";
+	cin >> targetmoney;
+	cout << "procent: ";
+	cin >> procent;
+	while (startmoney < targetmoney)
+	{
+		startmoney = startmoney + (startmoney * procent / 100);
+		years++;
+	}
+
+	cout << "years: " << years;
+	return 1;
+}

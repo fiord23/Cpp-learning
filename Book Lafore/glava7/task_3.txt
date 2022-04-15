@@ -1,0 +1,71 @@
+//task_3
+#include <iostream>
+using namespace std;
+// englaray.cpp
+// объекты для английских мер
+///////////////////////////////////////////////////////////
+class Distance
+{
+private:
+	int feet;
+	float inches;
+public:
+	Distance() : feet(0), inches(0.0) {}
+	void getdist() // получение информации
+	{
+		cout << "\n Write feet: "; cin >> feet;
+		cout << " Write inches: "; cin >> inches; 	
+	}
+
+	void showdist() const // показ информации
+	{
+		cout << feet << "\'-" << inches << '\"';
+	}
+
+	void add_dist (Distance dd1, Distance dd2)
+	{
+		inches = dd1.inches + dd2.inches; // сложение дюймов
+		feet = 0; // с возможным заемом
+		if (inches >= 12.0) // если число дюймов больше 12.0,
+		{ // то уменьшаем число дюймов
+			inches -= 12.0; // на 12.0 и увеличиваем
+			feet++; // число футов на 1
+		}
+		feet += dd1.feet + dd2.feet; // сложение футов
+	}
+
+	void div_dist(Distance d2, int divisor)
+	{
+		float fltfeet = d2.feet + d2.inches / 12.0;
+		float temp = fltfeet /= divisor;
+		feet = int(fltfeet);
+		inches = (temp - feet) * 12.0;
+	}
+
+};
+///////////////////////////////////////////////////////////
+int main()
+{
+	Distance dist[100]; // массив переменных
+	Distance sum;
+	int n = 0; // счетчик данных
+	char ans; // ответ пользователя (y/n)
+	cout << endl;
+	do
+	{
+		cout << "Write length number " << n + 1;
+		dist[n++].getdist(); // получаем и сохраняем длину
+		cout << "Continiue (y/n)?: ";
+		cin >> ans;
+	} while (ans != 'n'); // продолжать, пока не будет введено 'n'
+	// показываем все введенное
+	for (int m = 0; m < n; m++)
+		sum.add_dist(sum, dist[m]);
+
+
+	sum.div_dist(sum, n);
+	cout << "Result: " << endl;
+	sum.showdist();
+	
+	return 0;
+}

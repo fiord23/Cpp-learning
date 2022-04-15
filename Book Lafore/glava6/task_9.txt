@@ -1,0 +1,44 @@
+//task_9
+#include <iostream>
+#include "conio.h"
+using namespace std;
+char slash = '/';
+
+class fract
+{
+private:
+	int numerator;
+	int denominator;
+public:
+	void getfract() 
+	{
+		cout << endl << "inpuct fract: "; cin >> numerator >> slash >> denominator;
+	}
+		
+	void fractout() 
+	{
+		cout << endl << "fract is " << numerator << slash << denominator;
+	}
+
+	void fractsum(fract f1, fract f2) 
+	{
+		numerator = f1.numerator * f2.denominator + f1.denominator * f2.numerator;
+		denominator = f1.denominator + f2.denominator;
+	}
+};
+
+
+
+int main()
+{
+	fract fract1, fract2, fract3;
+	do 
+	{
+		fract1.getfract();
+		fract2.getfract();
+		fract3.fractsum(fract1, fract2);
+		fract3.fractout();
+
+	} while (_getche() != 'n');
+	return 0;
+}

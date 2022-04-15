@@ -1,0 +1,20 @@
+//task_1
+#include <iostream>
+using namespace std;
+
+float circarea(float radius);
+
+int main() {
+	float rad;
+	float area;
+	cout << "Input Radius: "; 
+	cin >> rad;
+	area = circarea(rad);
+	cout << "Square= " << area << endl; 
+	return 0;
+}
+
+float circarea(float radius) 
+{
+	return (3.14159F * radius * radius);
+}

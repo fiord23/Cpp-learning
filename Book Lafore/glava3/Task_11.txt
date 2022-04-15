@@ -1,0 +1,89 @@
+//task_11
+#include <iostream>
+#include <conio.h>
+using namespace std;
+int main() 
+{
+	int pens1, shillings1, pounds1,
+		pens2, shillings2, pounds2,
+		pensres, shillingsres, poundsres;
+	int number;
+	char operation;
+	char dummychar = '.';
+
+	do 
+	{
+		cout <<endl <<  "first money: J";
+		cin >> pounds1 >> dummychar >> shillings1 >> dummychar >> pens1;
+		cout << "operation: ";
+		cin >> operation;
+
+		switch (operation) 
+		{
+		case '+': 
+			cout << "second money: J";
+			cin >> pounds2 >> dummychar >> shillings2 >> dummychar >> pens2;
+			pensres = pens1 + pens2;
+			shillingsres = shillings1 + shillings2;
+			poundsres = pounds1 + pounds2;
+			if (pensres > 11)
+			{
+				shillingsres++;
+				pensres -= 12;
+			}
+
+			if (shillingsres > 19)
+			{
+				poundsres++;
+				shillingsres -= 20;
+			}
+				
+			cout << "J" << poundsres << dummychar << shillingsres << dummychar << pensres;
+			break;
+		case '-':
+			cout << "second money: J";
+			cin >> pounds2 >> dummychar >> shillings2 >> dummychar >> pens2;
+			pensres = pens1 - pens2;
+			shillingsres = shillings1 - shillings2;
+			poundsres = pounds1 - pounds2;
+			if (pensres < 0) 
+			{
+				shillingsres--;
+				pensres += 12;
+			}
+			if (shillingsres < 0)
+			{
+				poundsres--;
+				shillingsres += 20;
+			}
+
+			if (shillingsres < 0) poundsres--;
+			cout << "J" << poundsres << dummychar << shillingsres << dummychar << pensres;
+			break;
+		case '*':
+			cout << "multiple to ";
+			cin >> number;
+			pensres = pens1*number;
+			shillingsres = shillings1 * number;
+			poundsres = pounds1*number;
+			while (pensres > 11)
+			{
+				shillingsres++;
+				pensres -= 12;
+			}
+					
+			while (shillingsres > 19)
+			{
+				poundsres++;
+				shillingsres -= 20;
+			}
+				
+			cout << "J" << poundsres << dummychar << shillingsres << dummychar << pensres;
+			break;
+		default: cout << endl << "wrong!" << endl;
+			
+		}
+	cout <<endl << " repeat(y/n)? ";
+	} while (_getche() == 'y');
+	return 1;
+}

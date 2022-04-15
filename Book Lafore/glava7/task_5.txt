@@ -1,0 +1,123 @@
+//task_5
+#include <iostream>
+#include <conio.h>
+#include "math.h"
+char dummychar = '/';
+using namespace std;
+
+class fract
+{
+private:
+	int numerator;
+	int denominator;
+public:
+	fract() {}
+	fract(int num, int denum) 
+	{ numerator = num; denominator = denum; }
+	void getfrac();
+	void fadd(fract, fract);
+	void fsub(fract, fract);
+	void fmul(fract, fract);
+	void fdiv(fract, fract);
+	void fdivnum(int);
+	void fractprint();
+	void lowterms();
+
+};
+
+
+
+int main()
+{
+	fract fractarr[100];
+	fract sum(0, 1);
+	int n = 0; // счетчик данных
+	char ans; // ответ пользователя (y/n)
+	cout << endl;
+	do
+	{
+		cout << "Write fract " << n + 1;
+		fractarr[n++].getfrac(); //get fract
+		cout << "Continiue (y/n)?: ";
+		cin >> ans;
+	} while (ans != 'n'); // продолжать, пока не будет введено 'n'   
+	// count sum
+	for (int i = 0; i < n; i++)
+	{
+		sum.fadd(sum, fractarr[i]);
+	}
+	cout << endl << n << endl;
+	sum.lowterms();
+	sum.fdivnum(n);
+	sum.fractprint();
+	return 1;
+}
+
+void fract::getfrac()
+{
+	cout << endl << "Numerator/Denominator: ";
+	cin >> numerator >> dummychar >> denominator;
+}
+void fract::fadd(fract fract1, fract fract2)
+{
+	fract fractres;
+	numerator = fract1.numerator * fract2.denominator + fract1.denominator * fract2.numerator;
+	denominator = fract1.denominator * fract2.denominator;
+
+}
+
+void fract::fsub(fract fract1, fract fract2)
+{
+	numerator = fract1.numerator * fract2.denominator - fract1.denominator * fract2.numerator;
+	denominator = fract1.denominator * fract2.denominator;
+}
+
+void fract::fmul(fract fract1, fract fract2)
+{
+	numerator = fract1.numerator * fract2.numerator;
+	denominator = fract1.denominator * fract2.denominator;
+}
+
+void fract::fdiv(fract fract1, fract fract2)
+{
+	numerator = fract1.numerator * fract2.denominator;
+	denominator = fract1.denominator * fract2.numerator;
+}
+
+void fract::fdivnum(int num)
+{
+	numerator = numerator / num;
+	denominator = denominator / num;
+}
+
+void fract::fractprint()
+{
+	cout << "Result = " << numerator << dummychar << denominator << endl;
+}
+
+void fract::lowterms() // сокращение дроби
+{
+	long tnum, tden, temp, gcd;
+	tnum = labs(numerator); // используем неотрицательные
+	tden = labs(denominator); // значения (нужен cmath)
+	if (tden == 0) // проверка знаменателя на 0
+	{
+		cout << "Error denominator!"; exit(1);
+	}
+	else if (tnum == 0) // проверка числителя на 0
+	{
+		numerator = 0; denominator = 1; return;
+	}
+	// нахождение наибольшего общего делителя
+	while (tnum != 0)
+	{
+		if (tnum < tden) // если числитель больше знаменателя,
+		{
+			temp = tnum; tnum = tden; tden = temp;
+		} // меняем их местами
+		tnum = tnum - tden; // вычитание
+	}
+	gcd = tden; // делим числитель и знаменатель на
+	numerator = numerator / gcd; // полученный наибольший общий делитель
+	denominator = denominator / gcd;
+}

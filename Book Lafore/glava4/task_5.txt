@@ -1,0 +1,21 @@
+//task_5
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+struct date
+{
+	int day;
+	int months;
+	int year;
+};
+
+int main() 
+{
+	date event;
+	char slash = '/';
+	cout << "write date DD/MM/YYYY: ";
+	cin >> event.day >> slash >> event.months >> slash >> event.year;
+	cout << "So: " << event.day << slash << event.months << slash << event.year << endl;
+	return 0;
+}

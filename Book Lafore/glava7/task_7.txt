@@ -1,0 +1,46 @@
+// task_7
+#include <iostream> 
+#include <cstdlib>
+#include <iomanip>
+#include <stdlib.h>
+#include <math.h>
+using namespace std;
+const int MAX = 20;
+
+class moneys
+{
+private:
+	char money[MAX];
+	long double result;
+public:
+	void getdata()
+	{
+		moneys temp;
+		char c;
+		int count = 0;
+		cout << '$';
+		do
+		{
+			c = getchar();
+			//cin.get(money, MAX);
+			if (c != ' ')
+			{
+				money[count] = c;
+				count++;
+			} 
+		} while (c != '\n');
+		result = atof(money);
+	}
+	void printresult()
+	{
+		cout << setiosflags(ios::fixed) << setiosflags(ios::showpoint) << setprecision(2) << result;
+	}
+};
+/////////////////////////////////////////////////////////////
+int main()
+{
+	moneys a;
+	a.getdata();
+	a.printresult();
+	return 0;
+}

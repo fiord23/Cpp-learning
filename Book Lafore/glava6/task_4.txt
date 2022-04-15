@@ -1,0 +1,31 @@
+//task_4
+#include <iostream>
+using namespace std;
+
+class employee
+{
+private:
+	int empolyerid;
+	float salary;
+public: 
+	void getdata()
+	{
+		cout << "write Empolyee Number: "; cin >> empolyerid;
+		cout << "Write salary Emplyee: "; cin >> salary;
+	}
+	void printdata() const
+	{
+		cout << "Employee number is: " << empolyerid << endl;
+		cout << "Employee salary is: " << salary << endl;
+	}
+};
+
+int main()
+{
+	employee employer1, employer2;
+	employer1.getdata();
+	employer2.getdata();
+	employer1.printdata();
+	employer2.printdata();
+	return 0;
+}

@@ -1,0 +1,24 @@
+//task_10
+#include <iostream>
+using namespace std;
+
+struct sterling
+{
+	int pounds;
+	int shillings;
+	int pence;
+};
+
+int main() 
+{
+	sterling moneyold;
+	double decpounds, decfrac;
+	cout << "Input sterling in new format: J";
+	cin >> decpounds;
+	moneyold.pounds = static_cast<int>(decpounds);
+	decfrac = decpounds - moneyold.pounds;
+	moneyold.shillings = 20 * decfrac;
+	moneyold.pence = 240*decfrac - 12* moneyold.shillings;
+	cout << "Old form: J" << moneyold.pounds << '.' << moneyold.shillings << '.' << moneyold.pence;
+	return 0;
+}

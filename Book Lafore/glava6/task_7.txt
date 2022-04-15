@@ -1,0 +1,50 @@
+//task_7
+#include <iostream>
+#include <iomanip>
+#include "conio.h"
+using namespace std;
+
+char degreesymbol = '\xF8';
+
+
+class angle 
+{
+private:
+	int degree;
+	float minutes;
+	char orientation;
+public:
+	angle() : degree(0), minutes(0), orientation('N') {}
+	angle(int d, float m, char o) : degree(d), minutes(m), orientation(o)
+	{}
+	void getcoordinates()
+	{
+		cout << endl << "Write degree: "; cin >> degree;
+		cout  << "Write minutes: "; cin >> minutes;
+		cout << "Write orientation (N, S, W, E): "; cin >> orientation;
+	}
+	void printcoordinates() 
+	{
+		cout << setw(40) << setfill('-') << '-' << endl;
+		cout << degree << degreesymbol << minutes << "' " << orientation << endl; 
+	}
+};
+
+int main()
+{
+	char esc = 27;
+	char ch;
+	angle course(162, 45.8, 'N');
+	course.printcoordinates();
+	do 
+	{
+		
+		course.getcoordinates();
+		course.printcoordinates();
+		cout << endl << "Press ESC for Escape" << endl;
+		ch = _getche();
+	} while (ch != esc);
+
+	cout << endl << " BBYE BYE!";
+	return 0;
+}

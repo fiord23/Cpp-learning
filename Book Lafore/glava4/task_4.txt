@@ -1,0 +1,25 @@
+//task_4
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+struct employee
+{
+	int empolyerid;
+	float salary;
+};
+
+int main() 
+{
+	employee employer1, employer2, employer3;
+	cout << "Write employer1 ID and Salary: ";
+	cin >> employer1.empolyerid >> employer1.salary;
+	cout << "Write employer2 ID and Salary: ";
+	cin >> employer2.empolyerid >> employer2.salary;
+	cout << "Write employer3 ID and Salary: ";
+	cin >> employer3.empolyerid >> employer3.salary;
+	cout << "data worker 1 ID: " << employer1.empolyerid << ", and salary: " << employer1.salary << endl;
+	cout << "data worker 2 ID: " << employer2.empolyerid << ", and salary: " << employer2.salary << endl;
+	cout << "data worker 3 ID: " << employer3.empolyerid << ", and salary: " << employer3.salary << endl;
+	return 0;
+}

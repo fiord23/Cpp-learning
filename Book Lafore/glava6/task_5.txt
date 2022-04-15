@@ -1,0 +1,31 @@
+//task_5
+#include <iostream>
+using namespace std;
+
+char slash = '/';
+
+class date
+{
+private:
+	int day;
+	int months;
+	int year;
+public:
+	void getdate() 
+	{
+		cout << "write date DD/MM/YYYY: ";
+		cin >> day >> slash >> months >> slash >> year;
+	}
+	void showdate() 
+	{
+		cout << "So: " << day << slash << months << slash << year << endl;
+	}
+};
+
+int main()
+{
+	date event;
+	event.getdate();
+	event.showdate();
+	return 0;
+}

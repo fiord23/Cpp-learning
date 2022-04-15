@@ -1,0 +1,25 @@
+//task_8
+#include <iostream>
+using namespace std;
+
+void swap(int& number1, int& number2);
+
+int main() {
+
+	int	chislo1, chislo2;
+	cout << "Input  first number: "; cin >> chislo1;
+	cout << "Input  second number: "; cin >> chislo2;
+	swap(chislo1, chislo2);
+	cout << "Result" << endl;
+	cout << "first number  " << chislo1 << endl;
+	cout << "second number  " << chislo2 << endl;
+	return 0;
+}
+
+void swap(int& number1, int& number2)
+{
+	int temp;
+	temp = number1;
+	number1 = number2;
+	number2 = temp;
+}

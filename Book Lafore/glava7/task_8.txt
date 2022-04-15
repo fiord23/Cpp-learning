@@ -1,0 +1,40 @@
+// task_8
+#include <iostream> 
+using namespace std;
+
+class safearray
+{
+private:
+	enum {LIMIT = 80};
+	int arr[LIMIT];
+public:
+	void putel(int index, int number)
+	{
+		if (index >= 0 && index <= LIMIT-1)
+		{
+			arr[index] = number;
+		}
+		else
+			cout << endl << "error! ";
+	}
+	int getel(int index)
+	{
+		if (index >= 0 && index <= LIMIT - 1)
+		{
+			return arr[index];
+		}
+		else
+			cout << endl << "error! ";
+	}
+
+};
+/////////////////////////////////////////////////////////////
+int main()
+{
+	safearray sa1; // описываем массив
+	int temp = 12345; // описываем целое
+	sa1.putel(7, temp); // помещаем значение temp в массив
+	temp = sa1.getel(7);
+	cout << temp;
+	return 0;
+}

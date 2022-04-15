@@ -1,0 +1,16 @@
+//task_3
+#include <iostream>
+#include <conio.h>
+using namespace std;
+int main() 
+{
+	unsigned char flow = '0';
+	int result = 0;
+	cout << "input number: ";
+	while ((flow = _getche()) != '\r')
+	{
+	 result = result * 10 + flow - 48;
+	}
+	cout << endl <<"result is: " << result;
+	return 1;
+}

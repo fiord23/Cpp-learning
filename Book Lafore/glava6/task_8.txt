@@ -1,0 +1,31 @@
+//task_8
+#include <iostream>
+using namespace std;
+
+class objcounter
+{
+private:
+	int test;
+	static int counter;
+public: 
+	objcounter()
+	{ counter++; }
+	void outcount()
+	  {
+		  cout << "count is: " << counter << endl;
+	  }
+
+};
+
+int objcounter::counter = 0;
+
+int main()
+{
+	objcounter count1;
+    count1.outcount();
+	objcounter count2;
+	count2.outcount();
+	objcounter count3;
+	count3.outcount();
+	return 0;
+}

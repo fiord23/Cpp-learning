@@ -1,0 +1,21 @@
+//task_1
+#include <iostream>
+using namespace std;
+
+struct number
+{
+	int citycode;
+	int phonestantion;
+	int abonentnumber;
+};
+
+int main() 
+{
+	number mynumber = {212, 767, 8900};
+	number yournumber;
+	cout << "Write your citycode, phonestation, abonentnumber:" << endl;
+	cin >> yournumber.citycode >> yournumber.phonestantion >> yournumber.abonentnumber;
+	cout << "My number (" << mynumber.citycode << ") " << mynumber.phonestantion << '-' << mynumber.abonentnumber << endl;
+	cout << "Your number (" << yournumber.citycode << ") " << yournumber.phonestantion << '-' << yournumber.abonentnumber << endl;
+    return 1;
+}

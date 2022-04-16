@@ -1,0 +1,86 @@
+//task_5
+#include <iostream>
+using namespace std;
+
+class times
+{
+private:
+	int hours;
+	int minutes;
+	int seconds;
+public:
+	times() : hours(0), minutes(0), seconds(0)
+	{}
+	times(int h, int m, int s)
+	{
+		hours = h; minutes = m; seconds = s;
+	}
+	void printtime() const
+	{
+		cout << endl << "time: " << hours << ':' << minutes << ':' << seconds;
+	}
+	
+	times operator+(times t1)
+	{
+		int ht = 0;
+		int mt = 0;
+		int st = 0;
+		st = seconds + t1.seconds;
+		if (st >= 60)
+		{
+			mt++;
+			st -= 60;
+		}
+		mt = mt + minutes + t1.minutes;
+		if (mt >= 60)
+		{
+			ht++;
+			mt -= 60;
+		}
+		ht = ht + hours + t1.hours;
+		return (times(ht, mt, st));
+	}
+	times operator++(int)
+	{
+		return times (hours++, minutes, seconds);
+	}
+	times operator--(int)
+	{
+		return times (hours--, minutes, seconds);
+	}
+	times operator++ ()
+	{
+		++hours;
+		times temp;
+		temp.hours = hours;
+		return temp;
+	}
+	times operator-- ()
+	{
+		--hours;
+		times temp;
+		temp.hours = hours;
+		return temp;
+	}
+};
+
+int main()
+{
+	times t1(1, 1, 1);
+	times t2(2, 2, 2);
+	times t3(3, 3, 3);
+	times t4(4, 4, 4);
+	t1.printtime();
+	t2.printtime();
+	t3.printtime();
+	t4.printtime();
+	t1++;
+	++t2;
+	t3--;
+	--t4;
+	t1.printtime();
+	t2.printtime();
+	t3.printtime();
+	t4.printtime();
+	return 1;
+}

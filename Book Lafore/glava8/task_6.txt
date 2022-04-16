@@ -1,0 +1,125 @@
+//task_6
+#include <iostream>
+using namespace std;
+
+class times
+{
+private:
+	int hours;
+	int minutes;
+	int seconds;
+public:
+	times() : hours(0), minutes(0), seconds(0)
+	{}
+	times(int h, int m, int s)
+	{
+		hours = h; minutes = m; seconds = s;
+	}
+	times(float h, float m, float s)
+	{
+		hours = h; minutes = m; seconds = s;
+	}
+	void printtime() const
+	{
+		cout << endl << "time: " << hours << ':' << minutes << ':' << seconds;
+	}
+	
+	
+	times operator++(int)
+	{
+		return times (hours++, minutes, seconds);
+	}
+	times operator--(int)
+	{
+		return times (hours--, minutes, seconds);
+	}
+	times operator++ ()
+	{
+		++hours;
+		times temp;
+		temp.hours = hours;
+		return temp;
+	}
+	times operator-- ()
+	{
+		--hours;
+		times temp;
+		temp.hours = hours;
+		return temp;
+	}
+	times operator+(times t1)
+	{
+		int ht = 0;
+		int mt = 0;
+		int st = 0;
+		st = seconds + t1.seconds;
+		if (st >= 60)
+		{
+			mt++;
+			st -= 60;
+		}
+		mt = mt + minutes + t1.minutes;
+		if (mt >= 60)
+		{
+			ht++;
+			mt -= 60;
+		}
+		ht = ht + hours + t1.hours;
+		return (times(ht, mt, st));
+	}
+	times operator-(times t1)
+	{
+		int ht = 0;
+		int mt = 0;
+		int st = 0;
+		st = seconds - t1.seconds;
+		if (st < 0)
+		{
+			minutes--;
+			st += 60;
+		}
+		mt = minutes - t1.minutes;
+		if (mt <0)
+		{
+			hours--;
+			mt += 60;
+		}
+		ht =  hours - t1.hours;
+		return (times(ht, mt, st));
+	}
+	times operator*(float t1)
+	{
+		float st = static_cast<float>(seconds);
+		float mt = static_cast<float>(minutes);
+		float ht = static_cast<float>(hours);
+		st *= t1;
+		mt *= t1;
+		ht *= t1;
+		while (st > 59)
+		{
+			mt++;
+			st -= 60;
+		}
+		
+		while (mt > 59)
+		{
+			ht++;
+			mt -= 60;
+		}
+		
+		
+		return times(ht, mt, st);
+	}
+};
+
+int main()
+{
+	times t1(1, 2, 3);
+	times t2;
+	float tt = 50;
+	t2 = t1*tt;
+	t2.printtime();
+	
+
+	return 1;
+}

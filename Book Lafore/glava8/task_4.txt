@@ -1,0 +1,84 @@
+// task_4
+#include <iostream>
+using namespace std;
+
+class Int
+{
+private:
+	int number;
+public:
+	Int() : number(0) {}
+	Int(int num): number(num) {}
+
+	void goout()
+	{
+		cout << "number is " << number << endl;
+	}
+
+	Int operator+(Int num1)
+	{
+		long double check;
+		check = static_cast<long double>(number) + static_cast<long double>(num1.number);
+		if (check > 2147483648 || check < -2147483648)
+		{
+			cout << "Error!";
+			exit(1);
+		}
+		int result = static_cast<int>(check);
+		return (Int(result));
+	}
+
+	Int operator-(Int num1)
+	{
+		long double check;
+		check = static_cast<long double>(number) - static_cast<long double>(num1.number);
+		if (check > 2147483648 || check < -2147483648)
+		{
+			cout << "Error!";
+			exit(1);
+		}
+		int result = static_cast<int>(check);
+		return (Int(result));
+	}
+
+	Int operator*(Int num1)
+	{
+		long double check;
+		check = static_cast<long double>(number) * static_cast<long double>(num1.number);
+		if (check > 2147483648 || check < -2147483648)
+		{
+			cout << "Error!";
+			exit(1);
+		}
+		int result = static_cast<int>(check);
+		return (Int(result));
+	}
+
+	Int operator/(Int num1)
+	{
+		long double check;
+		check = static_cast<long double>(number) / static_cast<long double>(num1.number);
+		if (check > 2147483648 || check < -2147483648)
+		{
+			cout << "Error!";
+			exit(1);
+		}
+		int result = static_cast<int>(check);
+		return (Int(result));
+	}
+
+};
+
+
+int  main() {
+	Int n1(10), n2(5), n3;
+	n3 = n1 + n2;
+	n3.goout();
+	n3 = n1 - n2;
+	n3.goout();
+	n3 = n1 * n2;
+	n3.goout();
+	n3 = n1 / n2;
+	n3.goout();
+	return 1;
+}

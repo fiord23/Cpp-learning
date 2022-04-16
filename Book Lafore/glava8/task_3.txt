@@ -1,0 +1,71 @@
+//task_3
+#include <iostream>
+using namespace std;
+
+class times
+{
+private:
+	int hours;
+	int minutes;
+	int seconds;
+public:
+	times() : hours(0), minutes(0), seconds(0)
+	{}
+	times (int h, int m, int s) 
+	{
+		hours = h; minutes = m; seconds = s;
+	}
+	void printtime() const
+	{
+		cout << endl << "time: " << hours << ':' << minutes << ':' << seconds;
+	}
+	void timesum(times t1, times t2)
+	{
+		seconds = t1.seconds + t2.seconds;
+		minutes = t1.minutes + t2.minutes;
+		hours = t1.hours + t2.hours;
+		if (seconds >= 60)
+		{
+			minutes++;
+			seconds -= 60;
+		}
+		if (minutes >= 60)
+		{
+			hours++;
+			minutes -= 60;
+		}
+		cout << endl << "Sum time is: ";
+	}
+	times operator+(times t1)
+	{
+		int ht = 0;
+		int mt = 0;
+		int st = 0;
+		st = seconds + t1.seconds;
+		if (st >= 60)
+		{
+			mt++;
+			st -= 60;
+		}
+		mt = mt + minutes + t1.minutes;
+		if (mt >= 60)
+		{
+			ht++;
+			mt -= 60;
+		}
+		ht = ht + hours + t1.hours;
+		return (times(ht, mt, st));
+	}
+};
+
+int main()
+{
+	times t1(5, 10, 40);
+	times t2(1, 25, 30);
+	times t3;
+	t1.printtime();
+	t2.printtime();
+	t3 = t1 + t2;
+	t3.printtime();
+	return 1;
+}

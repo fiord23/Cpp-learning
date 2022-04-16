@@ -70,6 +70,20 @@ int main()
 	times t2(2, 2, 2);
 	times t3(3, 3, 3);
 	times t4(4, 4, 4);
+
+	times c1, c2;
+	c1.printtime();
+	c2.printtime();
+		
+	++c1;
+	c2 = ++c1;
+	c1.printtime();
+	c2.printtime();
+	
+	c2 = c1++;
+	c1.printtime();
+	c2.printtime();
+
 	t1.printtime();
 	t2.printtime();
 	t3.printtime();

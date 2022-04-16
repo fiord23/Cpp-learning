@@ -1,0 +1,11 @@
+// task_3
+#include <iostream>
+using namespace std;
+int  main() {
+	const int NUMBER = 10;
+	int tmp;
+	tmp = NUMBER * 2;
+	cout << NUMBER << endl << tmp << endl;
+	cout << --tmp << endl;
+	return 1;
+}

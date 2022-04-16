@@ -1,0 +1,12 @@
+// task_5
+#include <iostream>
+#include <CTYPE.H>
+using namespace std;
+int  main() {
+	char letter;
+	cout << "input 1 letter: ";
+	cin >> letter;
+	cout << endl;
+	cout << islower(letter);
+	return 1;
+}

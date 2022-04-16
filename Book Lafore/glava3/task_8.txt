@@ -1,0 +1,38 @@
+// task_ 8
+#include <iostream>
+#include <conio.h>
+using namespace std;
+int  main()
+{
+	int pounds1, shillings1, pens1, 
+		pounds2, shillings2, pens2,
+		poundsres, shillingsres, pensres ;
+	char dummychar = '.';
+
+	do 
+	{
+		cout <<endl<< "Input first pounds.shillings.pens: " << endl << 'J';
+		cin >> pounds1 >> dummychar >> shillings1 >> dummychar >> pens1;
+		cout << "Input second pounds.shillings.pens: " << endl << 'J';
+		cin >> pounds2 >> dummychar >> shillings2 >> dummychar >> pens2;
+
+		pensres = pens1 + pens2;
+		shillingsres = shillings1 + shillings2;
+		poundsres = pounds1 + pounds2;
+
+		if (pensres > 11)
+		{
+			shillingsres++;
+			pensres = pensres % 12;
+		}
+		if (shillingsres > 19)
+		{
+			poundsres++;
+			shillingsres = shillingsres % 20;
+		}
+		cout << "Result =J" << poundsres << dummychar << shillingsres << dummychar << pensres << endl;
+		cout << "Continiue (y/n)? ";
+	} while (_getche() == 'y');
+	cout << endl<< "bye bye" << endl;
+    return 1;
+}

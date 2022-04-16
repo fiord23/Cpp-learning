@@ -1,0 +1,40 @@
+// task_1
+#include <iostream>
+using namespace std;
+
+class Int 
+{
+private:
+	int number;
+public: 
+	void zero() 
+	{
+		number = 0;
+	}
+	void isint(int nb) 
+	{
+		number = nb;
+	}
+
+	void goout() 
+	{
+		cout << "number is " << number << endl;
+	}
+
+	void sum(Int, Int);
+};
+    void Int::sum(Int num1, Int num2) 
+{
+		number = num1.number + num2.number;
+}
+
+int  main() {
+	Int n1, n2, n3;
+	n1.isint(3);
+	n1.goout();
+	n2.isint(5);
+	n2.goout();
+	n3.sum(n1, n2);
+	n3.goout();
+	return 1;
+}

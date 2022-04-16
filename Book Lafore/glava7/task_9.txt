@@ -1,0 +1,61 @@
+// task_9
+#include <iostream>
+using namespace std;
+
+class Queue
+{
+private:
+	enum {MAX = 10};
+	int st[MAX];
+	int head; //start of queue
+	int tail; //end of queue
+public:
+	Queue()
+	{
+		 tail = 0; head = 0;
+	}
+	void put(int var)
+	{
+		st[++tail] = var;
+		if (tail == (MAX - 1))
+			tail = -1;
+	}
+	int get()
+	{
+		if (head == (MAX - 1))
+			head = -1;
+		return st[++head];
+	}
+
+};
+
+int  main() 
+{
+	Queue s1;
+	s1.put(11);
+	s1.put(22);
+	s1.put(33);
+	s1.put(44);
+	s1.put(55);
+	s1.put(66);
+	s1.put(77);
+	s1.put(88);
+	s1.put(99);
+	s1.put(1010);
+	s1.put(1111);
+	s1.put(1212);
+
+	cout << "1: " << s1.get() << endl;
+	cout << "2: " << s1.get() << endl;
+	cout << "3: " << s1.get() << endl;
+	cout << "4: " << s1.get() << endl;
+	cout << "5: " << s1.get() << endl;
+	cout << "6: " << s1.get() << endl;
+	cout << "7: " << s1.get() << endl;
+	cout << "8: " << s1.get() << endl;
+	cout << "9: " << s1.get() << endl;
+	cout << "10: " << s1.get() << endl;
+	cout << "1: " << s1.get() << endl;
+	cout << "2: " << s1.get() << endl;
+	return 1;
+}

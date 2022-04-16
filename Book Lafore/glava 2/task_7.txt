@@ -1,0 +1,11 @@
+// task_7
+#include <iostream>
+using namespace std;
+int  main() {
+	double celcium;
+	cout << "input CELCIUM: ";
+	cin >> celcium;
+	cout << endl;
+	cout << "FARENHEIT = " << celcium*9/5 + 32 << endl;
+	return 1;
+}

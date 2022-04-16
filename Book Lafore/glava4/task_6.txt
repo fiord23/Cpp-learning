@@ -1,0 +1,25 @@
+// task_6
+#include <iostream>
+using namespace std;
+enum etype {laborer, secretary, manager, accountant, executive, researcher};
+int  main()
+{
+    etype profession;
+    char shortprof;
+
+    cout << "Write profession short laborer, secretary, manager," <<endl << "accountant, executive, researcher: ";
+    cin >> shortprof;
+    switch(shortprof)
+    {
+    case 'l': profession = laborer; cout << "laborer"; break;
+    case 's': profession = secretary; cout << "secretary"; break;
+    case 'm': profession = manager; cout << "manager"; break;
+    case 'a': profession = accountant; cout << "accountant"; break;
+    case 'e': profession = executive; cout << "executive"; break;
+    case 'r': profession = researcher; cout << "researcher"; break;
+    defualt: cout << endl << "error! ";
+
+    }
+    return 1;
+}
+

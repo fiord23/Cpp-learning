@@ -1,0 +1,11 @@
+// task_1
+#include <iostream>
+using namespace std;
+int  main() {
+	double fut, gallon;
+	const double CONV = 7.481F;
+	cout << "Fut: ";
+	cin >> fut;
+	cout << endl << "gallon = " << fut / CONV << endl;
+	return 1;
+}

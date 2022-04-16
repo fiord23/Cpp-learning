@@ -1,0 +1,17 @@
+// task_ 9
+#include <iostream>
+using namespace std;
+int  main()
+{
+    int chairs, guests;
+    int result = 1;
+    cout << "input guests: ";
+    cin >> guests;
+    cout << "input chairs: ";
+    cin >> chairs;
+    for (int i = guests; i> guests-chairs; i -- )
+        result *=i;
+    cout << "result = " << result;
+    return 1;
+}
+

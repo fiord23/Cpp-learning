@@ -1,0 +1,12 @@
+// task_2
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int  main() {
+	const int WIDTH = 12;
+	cout << "1990" << setw(WIDTH) << "135" << endl <<
+	    	"1991" << setw(WIDTH) << "7290" << endl <<
+		    "1992" << setw(WIDTH) << "11300" << endl <<
+		    "1993" << setw(WIDTH) << "16200" << endl;
+	return 1;
+}

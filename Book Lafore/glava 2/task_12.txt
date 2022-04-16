@@ -1,0 +1,15 @@
+// task_12
+#include <iostream>
+using namespace std;
+int  main() {
+	double  decpounds, decfrac, shillings;
+	int poundsint;
+	cout << "pounds: J";
+	cin >> decpounds;
+	cout << endl;
+	poundsint = static_cast<int>(decpounds);
+	decfrac = decpounds - poundsint;
+	shillings = decfrac * 20.0; //shilling + pens
+		cout << 'J' << poundsint << '.' << shillings << endl;
+	return 1;
+}

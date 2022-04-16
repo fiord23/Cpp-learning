@@ -1,0 +1,13 @@
+// task_5
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int  main()
+{
+    for (int i = 42; i > 0; i = i-2)
+    {
+        cout << setfill(' ') << setw((i)/2) << ' ';
+        cout  << setfill('X') << setw(42-i) << ' ' << endl;
+    }
+    return 1;
+}

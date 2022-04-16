@@ -1,0 +1,47 @@
+// task_2
+#include <iostream>
+#include <string>
+using namespace std;
+const int MAX = 5;
+
+class employee
+{
+private:
+	string name;
+	long number;
+public:
+	void getdata()
+	{
+		cout << "Write worker name: ";
+		cin.ignore();
+		getline(cin, name);
+		cout << "Write worker number: ";
+		cin >> number;
+	}
+	void putdata()
+	{
+		cout << "Name: " << name << endl;
+		cout << "Number: " << number << endl;
+	}
+
+};
+
+int  main() 
+{
+	
+	employee workers[MAX];
+	for (int i = 0; i < MAX; i++)
+	{
+		cout << endl << "Worker " << i+1 << ':' << endl;
+		workers[i].getdata();	
+	}
+	
+	for (int j = 0; j < MAX; j++)
+	{
+		cout << endl << "Worker " << j+1 << ':' << endl;
+		workers[j].putdata();
+	}
+	return 1;
+}
+
+

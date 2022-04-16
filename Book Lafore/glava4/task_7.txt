@@ -1,0 +1,111 @@
+// task_7
+#include <iostream>
+using namespace std;
+
+enum etype {laborer, secretary, manager, accountant, executive, researcher};
+
+struct date 
+{
+    int day;
+    int months;
+    int year;
+};
+
+struct employee 
+{
+    int number;
+    float salary;
+    date startwork;
+    etype profession;
+};
+
+int  main()
+{
+    employee worker1, worker2, worker3;
+    char shortprof1, shortprof2, shortprof3;
+    char slash = '/';
+
+    //READING DATA
+    //Worker 1
+    cout << "WORKER 1: " << endl;
+    cout << "Number: "; cin >> worker1.number;
+    cout << "Salary: "; cin >> worker1.salary;
+    cout << "Date DD/MM/YYYY: ";
+    cin >> worker1.startwork.day >> slash >> worker1.startwork.months >> slash >> worker1.startwork.year;
+    cout << "Write profession short: laborer, secretary, manager," <<endl << "accountant, executive, researcher: ";
+    cin >> shortprof1;
+    // Worker 2
+    cout << "WORKER 2: " << endl;
+    cout << "Number: "; cin >> worker2.number;
+    cout << "Salary: "; cin >> worker2.salary;
+    cout << "Date DD/MM/YYYY: ";
+    cin >> worker2.startwork.day >> slash >> worker2.startwork.months >> slash >> worker2.startwork.year;
+    cout << "Write profession short: laborer, secretary, manager," << endl << "accountant, executive, researcher: ";
+    cin >> shortprof2;
+    //Worker 3
+    cout << "WORKER 3: " << endl;
+    cout << "Number: "; cin >> worker3.number;
+    cout << "Salary: "; cin >> worker3.salary;
+    cout << "Date DD/MM/YYYY: ";
+    cin >> worker3.startwork.day >> slash >> worker3.startwork.months >> slash >> worker3.startwork.year;
+    cout << "Write profession short: laborer, secretary, manager," << endl << "accountant, executive, researcher: ";
+    cin >> shortprof3;
+
+    //OUTPUT
+    // Worker1
+    cout << "WORKER 1: ";
+    cout << "ID: " << worker1.number << "; " ;
+    cout << "Salary: " << worker1.salary << "; " ;
+    cout << "Start date: " << worker1.startwork.day << slash << worker1.startwork.months
+         << slash << worker1.startwork.year << ", ";
+
+    switch(shortprof1)
+    {
+    case 'l': worker1.profession = laborer; cout << "laborer"; break;
+    case 's': worker1.profession = secretary; cout << "secretary"; break;
+    case 'm': worker1.profession = manager; cout << "manager"; break;
+    case 'a': worker1.profession = accountant; cout << "accountant"; break;
+    case 'e': worker1.profession = executive; cout << "executive"; break;
+    case 'r': worker1.profession = researcher; cout << "researcher"; break;
+    default: cout << endl << "error! ";
+    }
+
+    //Worker 2
+    cout << endl << "WORKER 2: ";
+    cout << "ID: " << worker2.number << "; ";
+    cout << "Salary: " << worker2.salary << "; ";
+    cout << "Start date: " << worker2.startwork.day << slash << worker2.startwork.months
+        << slash << worker2.startwork.year << ", ";
+
+    switch (shortprof2)
+    {
+    case 'l': worker2.profession = laborer; cout << "laborer"; break;
+    case 's': worker2.profession = secretary; cout << "secretary"; break;
+    case 'm': worker2.profession = manager; cout << "manager"; break;
+    case 'a': worker2.profession = accountant; cout << "accountant"; break;
+    case 'e': worker2.profession = executive; cout << "executive"; break;
+    case 'r': worker2.profession = researcher; cout << "researcher"; break;
+    default: cout << endl << "error! ";
+    }
+
+    //Worker 3
+    cout << endl << "WORKER 3: ";
+    cout << "ID: " << worker3.number << "; ";
+    cout << "Salary: " << worker3.salary << "; ";
+    cout << "Start date: " << worker3.startwork.day << slash << worker3.startwork.months
+        << slash << worker3.startwork.year << ", ";
+
+    switch (shortprof3)
+    {
+    case 'l': worker3.profession = laborer; cout << "laborer"; break;
+    case 's': worker3.profession = secretary; cout << "secretary"; break;
+    case 'm': worker3.profession = manager; cout << "manager"; break;
+    case 'a': worker3.profession = accountant; cout << "accountant"; break;
+    case 'e': worker3.profession = executive; cout << "executive"; break;
+    case 'r': worker3.profession = researcher; cout << "researcher"; break;
+    default: cout << endl << "error! ";
+    }
+
+    return 1;
+}
+

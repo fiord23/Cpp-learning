@@ -1,0 +1,20 @@
+// task_6
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int  main() {
+	double usd;
+	const double POUND = 1.487F;
+	const double FRANK = 0.172F;
+	const double MARK  = 0.584F;
+	const double YENA  = 0.00955F;
+	const int WIDTH = 12;
+	cout << "input USD: ";
+	cin >> usd;
+	cout << endl;
+	cout << setw(WIDTH) << "POUND = " << usd / POUND << endl;
+	cout << setw(WIDTH) << "FRANK = " << usd / FRANK << endl;
+	cout << setw(WIDTH) << "MARK = " << usd / MARK << endl;
+	cout << setw(WIDTH) << "YENA = " << usd / YENA << endl;
+	return 1;
+}

@@ -1,0 +1,27 @@
+// task_11
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int  main() {
+	const int WIDTH = 10;
+	cout << setiosflags(ios::left) << setw(WIDTH) 
+		 << "Surname" << setw(WIDTH) << "Name" << setw(WIDTH) << "Adress" 
+		<<  setw(WIDTH) << "City" << endl ;
+
+	cout << setw(40) << setfill('.') << "." << endl;
+	cout << setfill(' ');
+
+	cout << setiosflags(ios::left) << setw(WIDTH)
+		<< "Petrov" << setw(WIDTH) << "Vasiliy" << setw(WIDTH) << "Klen 16"
+		<< setw(WIDTH) << "SPB" << endl;
+
+	cout << setiosflags(ios::left) << setw(WIDTH)
+		<< "Ivanov" << setw(WIDTH) << "Sergey" << setw(WIDTH) << "Osin 13"
+		<< setw(WIDTH) << "Nahodka" << endl;
+
+	cout << setiosflags(ios::left) << setw(WIDTH)
+		<< "Sidorov" << setw(WIDTH) << "Ivan" << setw(WIDTH) << "Berez 21"
+		<< setw(WIDTH) << "Kaliningrad" << endl;
+
+	return 1;
+}

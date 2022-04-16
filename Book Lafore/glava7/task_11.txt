@@ -1,0 +1,83 @@
+// task_11
+#include <iostream>
+using namespace std;
+#include <string>
+#include <stdlib.h>
+#include <math.h>
+#include <iomanip>
+
+
+class money
+{
+private:
+	long double value;
+	char str[25];
+public:
+	money(long double mon)
+	{ value = mon; }
+	void ldtoms()
+	{
+		long int fracint, intvalue, tmp3;
+		int end = 0;
+		int lenght;
+		char temp;
+		long double integ, frac;
+		frac = modf(value, &integ);
+		intvalue = static_cast<int>(value);
+		fracint = frac*100;
+		cout << intvalue << '.' << fracint << endl;
+		int i = 0;
+		
+		while (fracint > 0)
+		{
+
+			str[i] = (fracint % 10 + '0');
+			fracint = fracint / 10;
+			i++;
+		}
+		str[i] = '.';
+		i++;
+		//i--;
+		while (intvalue > 0)
+		{
+			if (((i+2) % 4) == 0)
+			{
+				str[i] = ' ';
+				i++;
+			}
+			str[i] = (intvalue % 10 + '0');
+			intvalue = intvalue / 10;
+			i++;
+
+		}
+		
+		
+		lenght = strlen(str);
+		for (int i = 0; i < (lenght / 2 + 1); i++)
+		{
+			temp = str[i];
+			str[i] = str[lenght - i];
+			str[lenght - i] = temp;
+		}
+		int j = 0;
+		while (!(str[j] > '0' && str[j] < '9'))
+		{
+			j++;
+		}
+		cout << '$';
+		for (j; j <= lenght; j++)
+		{
+			cout << str[j];
+		}
+			
+		
+	}
+};
+
+
+int main()
+{
+	money one(1234567890.78);
+	one.ldtoms();
+	return 1;
+}

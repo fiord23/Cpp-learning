@@ -1,0 +1,11 @@
+// task_10
+#include <iostream>
+using namespace std;
+int  main() {
+	int pounds, shillings, pens;
+	char dummychar =  '.';
+	cout << "pounds.shillings.pens: " << endl << 'J';
+	cin >> pounds >>dummychar >> shillings >> dummychar >> pens;
+	cout << "Result =J" <<pounds <<dummychar<< static_cast<double>(((pens/12.0 + shillings)/20.0)*1000000) << endl;
+	return 1;
+}

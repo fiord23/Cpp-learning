@@ -1,0 +1,31 @@
+// task_1
+#include <iostream>
+#include "conio.h"
+using namespace std;
+const int MAX = 80;
+void reversit(char);
+
+int  main() 
+{
+	char str[MAX];
+	reversit(str[MAX]);
+	return 1;
+}
+
+void reversit(char)
+{
+	char strf[MAX];
+	char temp;
+	cout << "Write sentence: " << endl;
+	cin.get(strf, MAX);
+	int lenght = strlen(strf);
+	for (int i = 0; i < (lenght / 2 + 1); i++)
+	{
+		temp = strf[i];
+		strf[i] = strf[lenght - i];
+		strf[lenght - i] = temp;
+	}
+	// cout << lenght << endl; // Quantity of symbols
+	for (int i = 1; i <= lenght; i++)
+		cout << strf[i];
+}

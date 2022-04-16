@@ -1,0 +1,27 @@
+// task_4
+#include <iostream>
+#include <conio.h>
+using namespace std;
+int  main()
+{
+	double firstnumber, secondnumber;
+	char operation;
+	char dummychar = ' ';
+	do
+	{
+		cout << endl << "input first number, operation and second number: ";
+		cin >> firstnumber  >> operation >>  secondnumber;
+		switch (operation)
+		{
+		case '+': cout << firstnumber + secondnumber << endl; break;
+		case '-': cout << firstnumber - secondnumber << endl; break;
+		case '*': cout << firstnumber * secondnumber << endl; break;
+		case '/': cout << firstnumber / secondnumber << endl; break;
+		default: cout << "error!" << endl;
+		}
+		cout << "more? y/n: ";
+	}
+		while (_getche() == 'y');
+	cout << "bye bye!" << endl;
+    return 1;
+}

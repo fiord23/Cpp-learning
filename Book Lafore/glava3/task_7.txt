@@ -1,0 +1,19 @@
+// task_ 7
+#include <iostream>
+using namespace std;
+int  main()
+{
+    double startmoney, procent;
+    int years;
+    cout << "input start money: "; 
+    cin >> startmoney;
+    cout << "input years: ";
+    cin >> years;
+    cout << "procent: ";
+    cin >> procent;
+    for (int i = 1; i <= years; i++)
+        startmoney = startmoney + (startmoney * procent/100);
+    cout << "money = " << startmoney;
+    return 1;
+}
+

@@ -1,0 +1,14 @@
+// task_9
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int  main() {
+	int a, b, c, d;
+	char dummychar =  '/';
+	cout << "input first fract: " << endl;
+	cin >> a >>dummychar >> b;
+	cout << "input second fract: " << endl;
+	cin >> c >> dummychar >> d;
+	cout << "result = " << (a * d + b * c) << dummychar << (b * d) << endl;
+	return 1;
+}

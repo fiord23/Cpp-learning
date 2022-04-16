@@ -1,0 +1,50 @@
+// task_2
+#include <iostream>
+#include "conio.h"
+using namespace std;
+
+class toolBoth 
+{
+private:
+	unsigned int car;
+	double totalmoney;
+public:
+	toolBoth() : car(0), totalmoney(0.0) 
+	{}
+	void payingCar() 
+	{
+		car = car +1;
+		totalmoney = totalmoney + 0.5;
+	}
+	void nopayCar() 
+	{
+		car = car + 1;
+	}
+	void display() const
+	{
+
+		cout <<endl << "total cars are: " << car << endl;
+		cout << "total money is: " << totalmoney <<  endl;
+	}
+
+};
+
+int  main() 
+{
+	toolBoth road;
+	char key;
+
+	do
+	{
+		key = _getche();
+		if (key == '0')
+			road.nopayCar();
+		if (key == '1')
+			road.payingCar();
+		
+	}
+	while (key != 27); //ESC = 27
+	road.display();
+
+	return 1;
+}

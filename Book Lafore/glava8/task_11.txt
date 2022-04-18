@@ -1,0 +1,80 @@
+//task_11
+#include <iostream>
+using namespace std;
+char dot = '.';
+
+class Sterling
+{
+private:
+	int pounds;
+	int shillings;
+	int pence;
+public:
+	Sterling() : pounds(0), shillings(0), pence(0) {}
+	Sterling(double old)
+	{
+		double decfrac;
+		pounds = static_cast<int>(old);
+		decfrac = old - pounds;
+		shillings = 20 * decfrac;
+		pence = (240 * decfrac) - (12 * shillings);
+	}
+	Sterling(int p, int s, int pen) : pounds(p), shillings(s), pence(pen) {}
+	void getSterling(void)
+	{
+		cout << endl << "Write Sterlings in old format: £" << endl;
+		cin >> pounds >> dot >> shillings >> dot >> pence;
+	}
+	void putSterling(void) const
+	{
+		cout << endl << "Sterling in old format: £" << pounds << dot << shillings << dot << pence;
+	}
+	operator double()
+	{
+		double res;
+		res = static_cast<double>(pounds) +((static_cast<double>(pence) / 12.0 + static_cast<double>(shillings)) / 20);
+		return res;
+	}
+	Sterling operator+ (Sterling s2)
+	{
+		return Sterling(double(Sterling(pounds, shillings, pence)) + double(s2));
+	}
+	Sterling operator- (Sterling s2)
+	{
+		return Sterling(double(Sterling(pounds, shillings, pence)) - double(s2));
+	}
+	Sterling operator* (double s2)
+	{
+		return Sterling(double(Sterling(pounds, shillings, pence)) * s2);
+	}
+	Sterling operator/ (Sterling s2)
+	{
+		return Sterling(double(Sterling(pounds, shillings, pence)) / double(s2));
+
+	}
+	Sterling operator/ (double s2)
+	{
+		return Sterling(double(Sterling(pounds, shillings, pence)) / s2);
+	}
+};
+
+
+int main()
+{
+	Sterling s1(5, 10, 10);
+	Sterling s2(3.44);
+	double number = 3.5;
+	Sterling sresult;
+	sresult = s1 + s2;
+	sresult.putSterling();
+	sresult = s1 - s2;
+	sresult.putSterling();
+	sresult = s1 * number;
+	sresult.putSterling();
+	sresult = s1 / s2;
+	sresult.putSterling();
+	sresult = s1 / number;
+	sresult.putSterling();
+	return 0;
+}
+

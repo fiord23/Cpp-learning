@@ -1,0 +1,55 @@
+// task 9
+// arrover3.cpp
+// демонстрация создания безопасного массива, проверяющего
+// свои индексы при использовании
+// используется перегрузка операции []
+#include <iostream>
+using namespace std;
+#include <process.h> // для функции exit
+const int LIMIT = 100; // размер массива
+///////////////////////////////////////////////////////////
+class safearray
+{
+private:
+	int arr[LIMIT];
+	int lim;
+public: 
+	safearray () {}
+	safearray(int low, int high) 
+	{
+		lim = high - low;
+		if (lim >= LIMIT || lim < 0)
+		{
+			cout << "\nError index!"; exit(1);
+		}
+
+	}
+	// обратите внимание, что функция возвращает ссылку!
+	int& operator[](int n)
+	{
+		if (n < 0 || n >= lim)
+		{
+			cout << "\nError index!"; exit(1);
+		}
+		return arr[n];
+	}
+	int getnum()
+	{
+		return lim;
+	}
+};
+///////////////////////////////////////////////////////////
+int main()
+{
+	safearray sa1(10,55);
+	// задаем значения элементов
+	for (int j = 0; j < sa1.getnum(); j++)
+		sa1[j] = j * 10; // используем функцию слева от знака =
+		// показываем элементы
+	for (int j = 0; j < LIMIT; j++)
+	{
+		int temp = sa1[j]; // используем функцию справа от знака =
+		cout << "Element " << j << " is " << temp << endl;
+	}
+	return 0;
+}

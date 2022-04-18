@@ -1,0 +1,47 @@
+// task 10
+//sum polar coordinates
+#include <iostream>
+#include <math.h>
+using namespace std;
+const double PI = 3.1415926535897932384626433832795;
+
+class Polar
+{
+private:
+	long double radius;
+	long double angle;
+	
+public:
+	Polar(): radius(0.0), angle(0.0) {}
+	Polar(long double r, long double a) : radius(r), angle(a) {}
+	Polar operator+(Polar p1)
+	{
+		long double x1, x2, y1, y2, resx, resy, resr, resa;	
+		x1 = radius * cosl(angle * PI / 180);
+		y1 = radius * sinl(angle * PI / 180);
+		x2 = p1.radius * cosl(p1.angle * PI / 180);
+		y2 = p1.radius * sinl(p1.angle * PI / 180);
+		resx = x1 + x2;
+		resy = y1 + y2;
+		cout << endl << resx  << endl<< resy << endl;
+		resr = sqrt(resx * resx + resy * resy);
+		resa = atan(resy/resx)*180/PI;
+		return Polar(resr, resa);
+	}
+	void Polarprint(void)
+	{
+		cout << endl << radius << endl << angle;
+	}
+};
+///////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////
+int main()
+{
+	Polar pol1(5, 60);
+	Polar pol2(5, 10);
+	Polar polres;
+	polres = pol1 + pol2;
+	polres.Polarprint();
+	return 0;
+}

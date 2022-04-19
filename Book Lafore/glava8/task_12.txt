@@ -1,0 +1,213 @@
+//task_12
+#include <iostream>
+using namespace std;
+#include <cstdlib>
+#include <iomanip>
+#include <stdlib.h>
+#include <math.h>
+#include <conio.h>
+
+const int MAX = 20;
+char dot = '.';
+
+class Sterling
+{
+private:
+	int pounds;
+	int shillings;
+	int pence;
+public:
+	Sterling() : pounds(0), shillings(0), pence(0) {}
+	Sterling( long double old)
+	{
+		long double decfrac;
+		pounds = static_cast<int>(old);
+		decfrac = old - pounds;
+		shillings = 20 * decfrac;
+		pence = (240 * decfrac) - (12 * shillings);
+	}
+	Sterling(int p, int s, int pen) : pounds(p), shillings(s), pence(pen) {}
+	void getSterling(void)
+	{
+		cout << endl << "Write Sterlings in old format: £" << endl;
+		cin >> pounds >> dot >> shillings >> dot >> pence;
+	}
+	void putSterling(void) const
+	{
+		cout << endl << "Sterling in old format: £" << pounds << dot << shillings << dot << pence;
+	}
+	operator long double()
+	{
+		double res;
+		res = static_cast<long double>(pounds) +((static_cast<long double>(pence) / 12.0 + static_cast<long double>(shillings)) / 20);
+		return res;
+	}
+	Sterling operator+ (Sterling s2)
+	{
+		return Sterling(long double(Sterling(pounds, shillings, pence)) + long double(s2));
+	}
+	Sterling operator- (Sterling s2)
+	{
+		return Sterling(long double(Sterling(pounds, shillings, pence)) - long double(s2));
+	}
+	Sterling operator* (long double s2)
+	{
+		return Sterling(long double(Sterling(pounds, shillings, pence)) * s2);
+	}
+	Sterling operator/ (Sterling s2)
+	{
+		return Sterling(long double(Sterling(pounds, shillings, pence)) / long double(s2));
+
+	}
+	Sterling operator/ (long double s2)
+	{
+		return Sterling(long double(Sterling(pounds, shillings, pence)) / s2);
+	}
+};
+
+
+class moneys
+{
+private:
+	long double result;
+	char money[MAX];
+public:
+	moneys() : result(0.0) {};
+	moneys(long double mon) : result(mon) {};
+	moneys(Sterling s1)
+	{
+		long double tmp = s1.operator long double();
+		result = tmp * 50.0;
+	}
+	void getdata()
+	{
+		moneys temp;
+		char c;
+		int count = 0;
+		cout << '$';
+		do
+		{
+			c = getchar();
+			if (c != ' ')
+			{
+				money[count] = c;
+				count++;
+			}
+		} while (c != '\n');
+		result = atof(money);
+	}
+	void printresult()
+	{
+		cout << setiosflags(ios::fixed) << setiosflags(ios::showpoint) << setprecision(2) << result;
+	}
+	void ldtoms()
+	{
+		for (int k = 0; k < MAX; k++)
+		{
+			money[k] = 0; //all array = 0
+		}
+		long int fracint, intvalue;
+		int end = 0;
+		int lenght;
+		char temp;
+		long double integ, frac;
+		frac = modf(result, &integ); // frac = fracr from resul XXXXX.fract   integ - integer part
+		intvalue = static_cast<int>(result);  //int part from result
+		fracint = frac * 100; //fract part to int
+		int i = 0; // counter for cyfres 
+
+		while (fracint > 0) // add ' ' betweent 3 cyfres for fract part
+		{
+
+			money[i] = (fracint % 10 + '0');
+			fracint = fracint / 10;
+			i++;
+		}
+		money[i] = '.'; // add '.'
+		i++;
+		while (intvalue > 0) // ' ' for int part
+		{
+			if (((i + 2) % 4) == 0)
+			{
+				money[i] = ' ';
+				i++;
+			}
+			money[i] = (intvalue % 10 + '0');
+			intvalue = intvalue / 10;
+			i++;
+
+		}
+
+		lenght = strlen(money);   //change symbols. first to last, last to first
+		for (int i = 0; i < (lenght / 2 + 1); i++)
+		{
+			temp = money[i];
+			money[i] = money[lenght - i];
+			money[lenght - i] = temp;
+		}
+		int j = 0;
+		while (!(money[j] > '0' && money[j] < '9')) //find first cyfrees in array
+		{
+			j++;
+		}
+		cout << '$';
+		for (j; j <= lenght; j++) // print result
+		{
+			cout << money[j];
+		}
+		cout << endl;
+
+	}
+	moneys operator+(moneys money1)
+	{
+		long double tmpforres = 0.0;
+		tmpforres = result + money1.result;
+		return moneys(tmpforres);
+	}
+	moneys operator-(moneys money1)
+	{
+		long double tmpforres = 0.0;
+		tmpforres = result - money1.result;
+		return moneys(tmpforres);
+	}
+	moneys operator*(long double priceforone)
+	{
+		result *= priceforone;
+		return moneys(result);
+	}
+	long double operator / (moneys money1)
+	{
+		return (result / money1.result);
+	}
+	moneys operator / (long double quantity)
+	{
+		result /= quantity;
+		return moneys(result);
+	}
+	operator Sterling()
+	{
+		return Sterling(result / 50.0);
+	}
+};
+
+
+
+int main()
+{
+
+	moneys mny(123456.78);
+	mny.ldtoms();
+	Sterling conv = mny;
+	conv.putSterling();
+	cout << endl;
+
+	Sterling st2(43, 11, 11);
+	st2.putSterling();
+	cout << endl;
+	moneys conv2 = st2;
+	conv2.ldtoms();
+	
+
+	return 0;
+}
+

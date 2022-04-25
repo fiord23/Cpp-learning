@@ -1,0 +1,122 @@
+//task_4
+#include <iostream>
+using namespace std;
+enum diskt { CD, DVD };
+class publication
+{
+private:
+	string name;
+	float price;
+public:
+	void getdata()
+	{
+		cout << "Write name: ";
+		cin >> name;
+		cout << "Write price: $ ";
+		cin >> price;
+
+
+	}
+	void putdata()
+	{
+		cout <<  "Name: " << name << endl << "Price: $" << price << endl;
+	}
+};
+class sales
+{
+private:
+	float salemonths[3];
+public:
+	void getdata()
+	{
+		cout << "Write sales for 3 last monts" << endl;
+		for (int i = 0; i < 3; i++)
+		{
+			cout << "Month " << i + 1 << ": $ "; cin >> salemonths[i];
+		}
+	}
+	void putdata()
+	{
+		cout << "Sales for 3 last monts" << endl;
+		for (int i = 0; i < 3; i++)
+		{
+			cout << "Month " << i + 1 << ": $ "<< salemonths[i] << endl;
+		}
+	}
+	
+};
+class book : public publication, public sales
+{
+private: 
+	int sheetnumber;
+public: 
+	void getdata()
+	{
+		publication::getdata();
+		sales::getdata();
+		cout << "Write sheetnumber: ";
+		cin >> sheetnumber;
+	}
+	void putdata()
+	{
+		publication::putdata();
+		sales::putdata();
+		cout << "Sheet number: " << sheetnumber << endl;
+	}
+};
+class type : public publication, public sales
+{
+private:
+	float recordminutes;
+public:
+	void getdata()
+	{
+		publication::getdata();
+		sales::getdata();
+		cout << "Write time record (minutes): ";
+		cin >> recordminutes;
+	}
+	void putdata()
+	{
+		publication::putdata();
+		sales::putdata();
+		cout << "Time record (minutes): " << recordminutes << endl;
+	}
+};
+class disk : public publication
+{
+private:
+	diskt typed;
+public:
+	void getdata()
+	{
+		publication::getdata();
+		cout << "Write type disk CD or DVD (c/d): ";
+		char whatdisk;
+		cin >> whatdisk;
+		if (whatdisk == 'c')
+			typed = CD;
+		else typed = DVD;
+	}
+	void putdata()
+	{
+		publication::putdata();
+		cout << "Disk type: ";
+		if (typed == CD)
+			cout << "CD";
+		else cout << "DVD";
+
+	}
+
+};
+
+
+
+int main()
+{
+	disk d1;
+	d1.getdata();
+	d1.putdata();
+	return 0;
+}
+

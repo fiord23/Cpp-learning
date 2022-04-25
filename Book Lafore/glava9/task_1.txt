@@ -1,0 +1,74 @@
+//task_1
+#include <iostream>
+using namespace std;
+
+class publication
+{
+private:
+	string name;
+	float price;
+public:
+	void getdata()
+	{
+		cout << "Write name: ";
+		cin >> name;
+		cout << "Write price: $ ";
+		cin >> price;
+
+
+	}
+	void putdata()
+	{
+		cout <<  "Name: " << name << endl << "Price: $" << price << endl;
+	}
+};
+
+class book : public publication
+{
+private: 
+	int sheetnumber;
+public: 
+	void getdata()
+	{
+		publication::getdata();
+		cout << "Write sheetnumber: ";
+		cin >> sheetnumber;
+	}
+	void putdata()
+	{
+		publication::putdata();
+		cout << "Sheet number: " << sheetnumber << endl;
+	}
+};
+
+class type : public publication
+{
+private:
+	float recordminutes;
+public:
+	void getdata()
+	{
+		publication::getdata();
+		cout << "Write time record (minutes): ";
+		cin >> recordminutes;
+	}
+	void putdata()
+	{
+		publication::putdata();
+		cout << "Time record (minutes): " << recordminutes << endl;
+	}
+};
+
+
+
+int main()
+{
+	book b1;
+	type t1;
+	b1.getdata();
+	t1.getdata();
+	b1.putdata();
+	t1.putdata();
+	return 0;
+}
+

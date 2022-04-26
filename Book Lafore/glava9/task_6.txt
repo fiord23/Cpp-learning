@@ -1,0 +1,59 @@
+//task_6
+// демонстрация создания безопасного массива, проверяющего
+// свои индексы при использовании
+// используется перегрузка операции []
+#include <iostream>
+using namespace std;
+#include <process.h> // для функции exit
+const int LIMIT = 100; // размер массива
+///////////////////////////////////////////////////////////
+class safearray
+{
+private:
+	int arr[LIMIT];
+public:
+	// обратите внимание, что функция возвращает ссылку!
+	int& operator[](int n)
+	{
+		if (n < 0 || n >= LIMIT)
+		{
+			cout << "\nError index"; exit(1);
+		}
+		return arr[n];
+	}
+};
+
+class safehilo : public safearray
+{
+private:
+	int lim;
+public: 
+	safehilo(int low, int high)
+	{
+		lim = high - low;
+		if (lim >= LIMIT || lim < 0)
+		{
+			cout << "\nError index!"; exit(1);
+		}
+	}
+
+	int getnum()
+	{
+		return lim;
+	}
+};
+///////////////////////////////////////////////////////////
+int main()
+{
+	safehilo sa1(2, 30);
+	// задаем значения элементов
+	for (int j = 0; j < sa1.getnum(); j++)
+		sa1[j] = j * 10; // используем функцию слева от знака =
+		// показываем элементы
+	for (int j = 0; j < sa1.getnum(); j++)
+	{
+		int temp = sa1[j]; // используем функцию справа от знака =
+		cout << "Element " << j << " is " << temp << endl;
+	}
+	return 0;
+}

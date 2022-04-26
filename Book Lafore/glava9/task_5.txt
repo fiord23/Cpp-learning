@@ -1,0 +1,134 @@
+//task_5
+#include <iostream>
+using namespace std;
+const int LEN = 80; // максимальная длина имени
+enum prd { hour, week, month };
+
+///////////////////////////////////////////////////////////
+class employee // некий сотрудник
+{
+private:
+	char name[LEN]; // имя сотрудника
+	unsigned long number; // номер сотрудника
+public:
+	void getdata()
+	{
+		cout << "\n Write surname: "; cin >> name;
+		cout << " Write number: "; cin >> number;
+	}
+	void putdata() const
+	{
+		cout << "\n Surname: " << name;
+		cout << "\n Number: " << number;
+	}
+};
+class employee2 : public employee
+{
+private:
+	double compensation;
+	prd period;
+public:
+	void getdata()
+	{
+		employee::getdata();
+		cout << " Write compensation: "; cin >> compensation;
+		char per;
+		cout << " Write period compensation: (h - hour, w - week, m - month)"; cin >> per;
+		switch (per)
+		{
+		case 'h': period = hour; break;
+		case 'w': period = week; break;
+		case 'm': period = month; break;
+		default: cout << "\nERROR!";
+			break;
+		}
+	};
+	void putdata() const
+	{
+		employee::putdata();
+		cout << "\n Compensation: " << compensation;
+		cout << "\n Period compensation: ";
+		switch (period)
+		{
+		case hour: cout << "hour";
+			break;
+		case week: cout << "week";
+			break;
+		case month: cout << "month";
+			break;
+
+		} cout << endl;
+	};
+	
+};
+///////////////////////////////////////////////////////////
+class manager2 : public employee2 // менеджер
+{
+private:
+	char title[LEN]; // должность, например вице-президент
+	double dues; // сумма взносов в гольф-клуб
+public:
+	void getdata()
+	{
+		employee2::getdata();
+		cout << " Write profession: "; cin >> title;
+		cout << " Write sum money in golf-club: "; cin >> dues;
+	}
+	void putdata() const
+	{
+		employee2::putdata();
+		cout << "\n Profession: " << title;
+		cout << "\n Sum money in golf-club: " << dues;
+	}
+};
+
+///////////////////////////////////////////////////////////
+class scientist2 : public employee2 // ученый
+{
+private:
+	int pubs; // количество публикаций
+public:
+	void getdata()
+	{
+		employee2::getdata();
+		cout << " Writne number of publications: "; cin >> pubs;
+	}
+	void putdata() const
+	{
+		employee2::putdata();
+		cout << "\n Number of publications: " << pubs;
+	}
+};
+
+///////////////////////////////////////////////////////////
+class laborer : public employee // рабочий
+{
+};
+
+int main()
+{
+	manager2 m1, m2;
+	scientist2 s1;
+	laborer l1;
+	// введем информацию о нескольких сотрудниках
+	cout << endl;
+	cout << "\nFirst manager enter";
+	m1.getdata();
+	cout << "\nSecond manager enter";
+	m2.getdata();
+	cout << "\nEnter first scientist";
+	s1.getdata();
+	cout << "\nEnter first worker";
+	l1.getdata();
+	// выведем полученную информацию на экран
+	cout << "\nFirst manager";
+	m1.putdata();
+	cout << "\nSecond manager enter";
+	m2.putdata();
+	cout << "\nfirst scientist";
+	s1.putdata();
+	cout << "\nEnter first worker";
+	l1.putdata();
+	cout << endl;
+	return 0;
+}

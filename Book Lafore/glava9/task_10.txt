@@ -1,0 +1,140 @@
+//task_10
+// empmult.cpp
+// множественное наследование
+#include <iostream>
+using namespace std;
+const int LEN = 80; // максимальная длина имени
+///////////////////////////////////////////////////////////
+class student // сведения об образовании
+{
+private:
+	char school[LEN]; // название учебного заведения
+	char degree[LEN]; // уровень образования
+public:
+	void getedu()
+	{
+		cout << " Write name EDU: ";
+		cin >> school;
+		cout << " Write level studying\n";
+		cout << " (high, bacalavr, magister, scientictic): ";
+		cin >> degree;
+	}
+	void putedu() const
+	{
+		cout << "\n EDU name: " << school;
+		cout << "\n Level studying: " << degree;
+	}
+};
+///////////////////////////////////////////////////////////
+class employee // некий сотрудник
+{
+private:
+	char name[LEN]; // имя сотрудника
+	unsigned long number; // номер сотрудника
+public:
+	void getdata()
+	{
+		cout << "\n Write surname: "; cin >> name;
+		cout << " Write ID: "; cin >> number;
+	}
+	void putdata() const
+	{
+		cout << "\n Surname: " << name;
+		cout << "\n ID: " << number;
+	}
+};
+///////////////////////////////////////////////////////////
+class manager : private employee, private student // менеджер
+{
+private:
+	char title[LEN]; // должность сотрудника
+	double dues; // сумма взносов в гольф-клуб
+public:
+	void getdata()
+	{
+		employee::getdata();
+		cout << " Write work name: "; cin >> title;
+		cout << " Write sum money to golf club: "; cin >> dues;
+		student::getedu();
+	}
+	void putdata() const
+	{
+		employee::putdata();
+		cout << "\n Work name: " << title;
+		cout << "\n Sum money to golf club: " << dues;
+		student::putedu();
+	}
+};
+
+class executive : public manager
+{
+private:
+	int extramoney;
+	int bounds;
+public:
+	void getdata()
+	{
+		manager::getdata();
+		cout << " Write extramoney: "; cin >> extramoney;
+		cout << " Write number bounds: "; cin >> bounds;
+	}
+	void putdata()
+	{
+		manager::putdata();
+		cout << " Extramoney: " << extramoney;
+		cout << " Number bounds: " << bounds;
+	}
+		
+};
+
+class scientist : private employee, private student // ученый
+{
+private:
+	int pubs; // количество публикаций
+public:
+	void getdata()
+	{
+		employee::getdata();
+		cout << " Write publication number: "; cin >> pubs;
+		student::getedu();
+	}
+	void putdata() const
+	{
+		employee::putdata();
+		cout << "\n Publication number: " << pubs;
+		student::putedu();
+	}
+};
+///////////////////////////////////////////////////////////
+
+class laborer : public employee // рабочий
+{
+};
+///////////////////////////////////////////////////////////
+int main()
+{
+	executive m1;
+	scientist s1, s2;
+	laborer l1;
+	// введем информацию о нескольких сотрудниках
+	cout << endl;
+	cout << "\nEnter info first manager";
+	m1.getdata();
+	cout << "\nEnter info first scientist";
+	s1.getdata();
+	cout << "\nEnter info second scientist";
+	s2.getdata();
+	cout << "\nEnter info first worker";
+	l1.getdata();
+	// выведем полученную информацию на экран
+	cout << "\ninfo first manager";
+	m1.putdata();
+	cout << "\ninfo first scientist";
+	s1.putdata();
+	cout << "\nEnter info second scientist";
+	s2.putdata();
+	cout << "\nEnter info first worker";
+	l1.putdata();
+	cout << endl;
+	return 0;
+}

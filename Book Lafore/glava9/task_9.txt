@@ -1,0 +1,105 @@
+//task_9
+#include <iostream>
+using namespace std;
+char slash = '/';
+
+class publication
+{
+private:
+	string name;
+	float price;
+public:
+	void getdata()
+	{
+		cout << "\nWrite name: ";
+		cin >> name;
+		cout << "Write price: $ ";
+		cin >> price;
+	}
+	void putdata()
+	{
+		cout << "\nName: " << name << endl << "Price: $" << price << endl;
+	}
+};
+
+class date
+{
+private:
+	int day;
+	int months;
+	int year;
+public:
+	void getdate()
+	{
+		cout << "write date DD/MM/YYYY: ";
+		cin >> day >> slash >> months >> slash >> year;
+	}
+	void showdate()
+	{
+		cout << "Date: " << day << slash << months << slash << year << endl;
+	}
+};
+
+class publication2 :public publication, public date
+{
+public:
+	void getdata()
+	{
+		publication::getdata();
+		date::getdate();
+	}
+	void putdata()
+	{
+		publication::putdata();
+		date::showdate();
+	}
+};
+class book : public publication2
+{
+private:
+	int sheetnumber;
+public:
+	void getdata()
+	{
+		publication2::getdata();
+		cout << "Write sheetnumber: ";
+		cin >> sheetnumber;
+	}
+	void putdata()
+	{
+		publication2::putdata();
+		cout << "Sheet number: " << sheetnumber << endl;
+	}
+};
+
+class type : public publication2
+{
+private:
+	float recordminutes;
+public:
+	void getdata()
+	{
+		publication2::getdata();
+		cout << "Write time record (minutes): ";
+		cin >> recordminutes;
+	}
+	void putdata()
+	{
+		publication2::putdata();
+		cout << "Time record (minutes): " << recordminutes << endl;
+	}
+};
+
+
+
+int main()
+{
+	book b1;
+	type t1;
+	b1.getdata();
+	t1.getdata();
+	b1.putdata();
+	t1.putdata();
+	return 0;
+}
+

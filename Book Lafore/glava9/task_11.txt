@@ -1,0 +1,89 @@
+//task_11
+// staken.cpp
+// перегрузка функций базового и производного классов
+#include <iostream>
+using namespace std;
+#include <process.h> // для exit()
+///////////////////////////////////////////////////////////
+struct pairc
+{
+	int x;
+	int y;
+};
+class Stack
+{
+protected: // Замечание: использовать private нельзя
+	enum { MAX = 10 }; // размер стека
+	int st[MAX]; // данные, хранящиеся в стеке
+	int top; // индекс последнего элемента в стеке
+public:
+	Stack() // конструктор
+	{
+		top = -1;
+	}
+	void push(int var) // помещение числа в стек
+	{
+		st[++top] = var;
+	}
+	int pop() // извлечение числа из стека
+	{
+		return st[top--];
+	}
+};
+///////////////////////////////////////////////////////////
+class Stack2 : public Stack
+{
+public:
+	void push(int var) // помещение числа в стек
+	{
+		if (top >= MAX - 1) // если стек полон, то ошибка
+		{
+			cout << "\nError! Stack is full!"; exit(1);
+		}
+		Stack::push(var); // вызов функции push класса Stack
+	}
+	int pop() // извлечение числа из стека
+	{
+		if (top < 0) // если стек пуст, то ошибка
+		{
+			cout << "\nError! Stack is empty!\n"; exit(1);
+		}
+		return Stack::pop(); // вызов функции pop класса Stack(можно без return)
+	}
+};
+///////////////////////////////////////////////////////////
+class pairStack : Stack2
+{
+private:
+	pairc coordinates[MAX];
+public:
+	void push(int a, int b)
+	{	
+		coordinates[top].x = a;
+		Stack2::push(coordinates[top].x);
+		coordinates[top].y = b;	
+		Stack2::push(coordinates[top].y);
+	}
+	void pop()
+	{
+		coordinates[top].y = Stack2::pop();
+		cout << endl << coordinates[top].y;
+		coordinates[top].x = Stack2::pop();
+		cout << " " << coordinates[top].x;
+	}
+
+};
+///////////////////////////////////////////////////////////
+int main()
+{
+	pairStack s1;
+	s1.push(1, 2); // поместим в стек несколько чисел
+	s1.push(3, 4);
+	s1.push(5, 6);
+	s1.push(7, 8);
+	s1.pop();
+	s1.pop();
+	s1.pop();
+	s1.pop();
+	return 0;
+}

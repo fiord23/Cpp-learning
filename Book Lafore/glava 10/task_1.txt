@@ -1,0 +1,20 @@
+//task_1
+#include <iostream>
+using namespace std;
+const int MAX = 10;
+int main()
+{
+	float sum = 0.0;
+	float* ptr;
+	float farr[MAX];
+	ptr = farr;
+	cout << "write 10 numbers: ";
+	for(int i = 0; i < MAX; i++)
+	{
+		cin >> *(ptr + i);
+		sum += *(ptr + i);
+	}
+	
+	cout << endl << "Result = " << sum / 10;
+	return 0;
+}

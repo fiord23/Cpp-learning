@@ -1,0 +1,48 @@
+//task_2
+// использование оператора new для выделения памяти под строку 
+#include <iostream> 
+#include <cstring> // для strcpy(), и т.д. using namespace std; 
+using namespace std;
+
+///////////////////////////////////////////////////////////
+class String
+{
+private:
+	char* str; // указатель на строку
+public:
+	String(const char* s) // конструктор с одним параметром
+	{
+		int length = strlen(s); // вычисляем длину строки
+		str = new char[length + 1]; // выделяем необходимую память
+		strcpy_s(str, length + 1, s); // копируем строку
+		
+	}
+	~String() // деструктор
+	{
+		cout << "Removing string\n";
+		delete[] str; // освобождаем память
+	}
+	void upit(void)
+	{
+		for (int i = 0; i <= strlen(str + 1); i++)
+		{
+			if ( (*(str + i) >= 'a') && (*(str + i) <= 'z') )
+			* (str + i) -= 32;
+		}
+	}
+	void display() // покажем строку на экране
+	{
+		cout << str << endl;
+	}
+};
+///////////////////////////////////////////////////////////
+int main()
+{
+	String s1 = "Hello,hello!";
+	s1.display();
+	cout << "s1 = ";
+	s1.upit();
+	s1.display();
+	return 0;
+}
+

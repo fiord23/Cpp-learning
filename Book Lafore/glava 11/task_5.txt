@@ -1,0 +1,98 @@
+//task_5
+#include <iostream>
+using namespace std;
+
+class publication
+{
+private:
+	string name;
+	float price;
+public:
+	virtual	void getdata()
+	{
+		cout << "Write name: ";
+		cin >> name;
+		cout << "Write price: $ ";
+		cin >> price;
+	}
+	virtual void putdata()
+	{
+		cout << "Name: " << name << endl << "Price: $" << price << endl;
+	}
+	virtual bool isOversize() = 0;
+
+};
+
+class book : public publication
+{
+private:
+	int sheetnumber;
+public:
+	void getdata()
+	{
+		publication::getdata();
+		cout << "Write sheetnumber: ";
+		cin >> sheetnumber;
+	}
+	void putdata()
+	{
+		publication::putdata();
+		cout << "Sheet number: " << sheetnumber << endl;
+	}
+	bool isOversize()
+	{	
+		return (sheetnumber > 800) ? true : false;
+	}
+};
+
+class tape : public publication
+{
+private:
+	float recordminutes;
+public:
+	void getdata()
+	{
+		publication::getdata();
+		cout << "Write time record (minutes): ";
+		cin >> recordminutes;
+	}
+	void putdata()
+	{
+		publication::putdata();
+		cout << "Time record (minutes): " << recordminutes << endl;
+	}
+	bool isOversize()
+	{
+		return (recordminutes > 1000) ? true : false;
+	}
+};
+
+
+
+int main()
+{
+	publication* pubarr[100];
+	int n = 0;
+	char choice;
+	do
+	{
+		cout << endl << "Write data for book or film (b/f)?";
+		cin >> choice;
+		if (choice == 'b')
+			pubarr[n] = new book;
+		else pubarr[n] = new tape;
+		pubarr[n++]->getdata();
+		cout << "continiue? (y/n)?";
+		cin >> choice;
+	} while (choice == 'y');
+	cout << endl << "--------------------------------" << endl;
+	for (int j = 0; j < n; j++)
+	{
+		pubarr[j]->putdata();
+		if (pubarr[j]->isOversize())
+			cout  << "Oversize!" << endl;
+	}
+	cout << endl;
+	return 0;
+}
+

@@ -1,0 +1,33 @@
+//task_9
+// список
+#include <iostream>
+using namespace std;
+///////////////////////////////////////////////////////////
+const int SIZE = 10;
+
+int main()
+{
+	int a0[SIZE] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	int a1[SIZE] = { 1, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	int a2[SIZE] = { 2, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	int a3[SIZE] = { 3, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	int a4[SIZE] = { 4, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	int a5[SIZE] = { 5, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	int a6[SIZE] = { 6, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	int a7[SIZE] = { 7, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	int a8[SIZE] = { 8, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	int a9[SIZE] = { 9, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	int* ap[SIZE] = {a0, a1, a2, a3, a4, a5, a6, a7, a8, a9};
+
+	for (int j = 0; j < SIZE; j++)
+	{
+		cout << endl;
+		for (int k = 0; k < SIZE; k++)
+		{
+			cout << ap[j][k];
+			cout << " ";
+		}
+	}
+
+	return 1;
+}

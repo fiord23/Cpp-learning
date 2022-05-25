@@ -1,0 +1,47 @@
+//task_3
+// persort.cpp
+// сортировка объектов через массив указателей на них
+#include <iostream>
+#include <cstring>
+#include <stdio.h>
+using namespace std;
+const int DAYS = 7;
+///////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////// 
+int main()
+{
+	void bsort(char**, int); // прототип функции
+   char *weekdays[DAYS] = { "Monday" , "Tuesday" , "Wednesday" , "Thursday" , "Friday" , "Saturday" , "Sunday" };
+for (int j = 0; j < DAYS; j++) // покажем неотсортированны'й список
+	cout << *(weekdays + j) << endl;
+
+bsort(weekdays, DAYS); // отсортируем указатели
+for (int j = 0; j < DAYS; j++) // покажем отсортированны'й список
+	cout << *(weekdays + j) << endl;
+
+cout << endl;
+return 0;
+}
+///////////////////////////////////////////////////////////
+
+void bsort(char** ptr, int n)
+{
+	void order(char**, char**);
+	int j, k; // переменные для циклов
+	for (j = 0; j < n - 1; j++) // внешний цикл
+		for (k = j + 1; k < n; k++) // внутренний цикл
+			order(ptr + j, ptr + k);
+}
+
+
+///////////////////////////////////////////////////////////
+void order(char** numb1, char** numb2) // сортировка двух чисел
+{
+	if (strcmp(*numb1, *numb1) > 0)// // если первое число больше, то меняем их местами
+	{
+		char *temp = *numb1;
+		*numb1 = *numb2;
+		*numb2 = temp;
+	}
+}

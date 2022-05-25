@@ -1,0 +1,25 @@
+//task_10
+#include <iostream>
+using namespace std;
+///////////////////////////////////////////////////////////
+const int SIZE = 10;
+const int NUMARRAYS = 10;
+
+int main()
+{ 
+	int* ap[SIZE];
+	for (int j = 0; j < NUMARRAYS; j++) // создаем NUMARRAYS массивов
+		*(ap + j) = new int[SIZE]; // no MAXSIZE целых чисел в каждом
+	
+	for (int j = 0; j < SIZE; j++)
+	{
+		cout << endl;
+		for (int k = 0; k < SIZE; k++)
+		{
+			*(*(ap + j) + k) = j + k;
+			cout << *(*(ap + j) + k);
+			cout << "    ";
+		}
+	}
+	return 1;
+}

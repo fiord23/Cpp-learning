@@ -1,0 +1,46 @@
+//task_3
+#include <iostream>
+using namespace std;
+
+class Distance
+{
+private:
+	int feet;
+	float inches;
+public:
+	Distance() : feet(0), inches(0.0)
+	{}
+	Distance(int f, float i) : feet(f), inches(i)
+	{}
+	Distance(float s)
+	{
+		feet = static_cast<int>(s);
+		inches = 12*(s - feet);
+	}
+	void showdata()
+	{
+		cout << endl << feet << "-" << inches;
+	}
+	friend Distance operator * (Distance, Distance);
+};
+Distance operator * (Distance d1, Distance d2)
+{
+	float dd1 = d1.feet + d1.inches / 12.0;
+	float dd2 = d2.feet + d2.inches / 12.0;
+	float res = dd1 * dd2;
+	return Distance(res);
+}
+
+
+int main()
+{
+	Distance dd1(3, 6.0), dd2(2, 3.0), ddres;
+	ddres = dd1 * dd2;
+	ddres.showdata();
+	ddres = 7.5 * dd1;
+	ddres.showdata();
+	ddres = dd1 * 7.5;
+	ddres.showdata();
+	return 0;
+}
+

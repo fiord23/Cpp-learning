@@ -1,0 +1,182 @@
+// task_7
+#include <iostream> 
+#include <cstdlib>
+#include <iomanip>
+#include <stdlib.h>
+#include <math.h>
+#include <conio.h>
+using namespace std;
+const int MAX = 20;
+
+class moneys
+{
+private:
+	long double result;
+	char money[MAX];
+public:
+	moneys() : result(0.0) {};
+	moneys(long double mon) : result(mon) {};
+	void getdata()
+	{
+		char c;
+		int count = 0;
+		cout << '$';
+		do
+		{
+			c = getchar();
+			if (c != ' ')
+			{
+				money[count] = c;
+				count++;
+			}
+		} while (c != '\n');
+		result = atof(money);
+	}
+	void printresult()
+	{
+		cout << setiosflags(ios::fixed) << setiosflags(ios::showpoint) << setprecision(2) << result;
+	}
+	void ldtoms()
+	{
+		for (int k = 0; k < MAX; k++)
+		{
+			money[k] = 0; //all array = 0
+		}
+		long int fracint, intvalue;
+		int end = 0;
+		int lenght;
+		char temp;
+		long double integ, frac;
+		frac = modf(result, &integ); // frac = fracr from resul XXXXX.fract   integ - integer part
+		intvalue = static_cast<int>(result);  //int part from result
+		fracint = frac * 100; //fract part to int
+		if (fracint >= 50)
+			intvalue++;
+		fracint = 0;
+		int i = 0; // counter for cyfres 
+
+		while (intvalue > 0) // ' ' for int part
+		{
+			if ((i % 4) == 0)
+			{
+				money[i] = ' ';
+				i++;
+			}
+			money[i] = (intvalue % 10 + '0');
+			intvalue = intvalue / 10;
+			i++;
+
+		}
+
+		lenght = strlen(money);   //change symbols. first to last, last to first
+		for (int i = 0; i < (lenght / 2 + 1); i++)
+		{
+			temp = money[i];
+			money[i] = money[lenght - i];
+			money[lenght - i] = temp;
+		}
+		int j = 0;
+		while (!(money[j] > '0' && money[j] < '9')) //find first cyfrees in array
+		{
+			j++;
+		}
+		cout << '$';
+		for (j; j <= lenght; j++) // print result
+		{
+			cout << money[j];
+		}
+		cout << endl;
+
+	}
+
+	moneys operator+(moneys money1)
+	{
+		long double tmpforres = 0.0;
+		tmpforres = result + money1.result;
+		return moneys(tmpforres);
+	}
+	moneys operator-(moneys money1)
+	{
+		long double tmpforres = 0.0;
+		tmpforres = result - money1.result;
+		return moneys(tmpforres);
+	}
+	moneys operator*(long double priceforone)
+	{
+		result *= priceforone;
+		return moneys(result);
+	}
+	//long double operator / (moneys money1)
+	//{
+	//	return (result / money1.result);
+//	}
+	moneys operator / (long double quantity)
+	{
+		result /= quantity;
+		return moneys(result);
+	}
+
+	friend moneys operator* (moneys, moneys);
+	friend moneys operator/ (moneys, moneys);
+};
+/////////////////////////////////////////////////////////////
+moneys operator* (moneys m1, moneys m2)
+{
+	long double mny;
+	mny = m1.result * m2.result;
+	return moneys(mny);
+}
+
+moneys operator/ (moneys m1, moneys m2)
+{
+	long double mny;
+	mny = m1.result / m2.result;
+	return moneys(mny);
+}
+
+/////////////////////////////////////////////////////////////
+int main()
+{
+	moneys money1, money2, moneyres;
+	long double resultdiv, number;
+	char answer;
+	do
+	{
+		money1.getdata();
+		money2.getdata();
+		cout << endl << "Write number: ";
+		cin >> number;
+		cout << endl;
+		money1.ldtoms();
+		money2.ldtoms();
+		cout << "number*money: ";
+		moneyres = number * money1;
+		moneyres.ldtoms();
+
+		cout << "number/money: ";
+		moneyres = number / money1;
+		moneyres.ldtoms();
+
+		cout << "Moneysum: ";
+		moneyres = money1 + money2;
+		moneyres.ldtoms();
+
+		cout << "Moneysub: ";
+		moneyres = money1 - money2;
+		moneyres.ldtoms();
+		cout << "Moneymult to number: ";
+		moneyres = money1 * number;
+		moneyres.ldtoms();
+		cout << "Moneydiv: ";
+		moneyres = money1 / money2;
+		///cout << moneyres << endl;
+		cout << "Moneydiv to number: ";
+		moneyres = money1 / number;
+		moneyres.ldtoms();
+		cout << endl << "Continiue: (y/n) ";
+		cin >> answer;
+	} while (answer == 'y');
+	cout << endl << "Bye Bye!";
+	moneyres.ldtoms();
+	return 0;
+}

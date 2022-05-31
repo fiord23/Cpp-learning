@@ -1,0 +1,56 @@
+//task_4
+// otype.cpp
+// Имитация команды TYPE
+#include <fstream> // для файловых функций
+#include <iostream>
+using namespace std;
+#include <process.h> // для exit()
+const int SIZE = 30;
+char spa = ' ';
+class employee
+{
+private:
+	string name;
+	string surname;
+	string secname;
+	int id;
+public:
+	void getdata()
+	{
+		cout << endl << "Write name, surname, father name: "; cin >> name >> spa >> surname >> spa >> secname;
+		cout << "Write ID: "; cin >> id;
+	}
+	void showdata()
+	{
+		cout << endl << "Name, Surname, father name: " << name << ' ' << surname << ' ' << secname;
+		cout << endl << "ID: " << id;
+	}
+
+};
+
+int main()
+{
+	employee p;
+	fstream file;
+	char ch;
+	file.open("TEST.TXT", ios::app | ios::out | ios::in | ios::binary);
+	do { // сохранение данных на диск
+		cout << "Wthite employee data: ";
+		p.getdata(); // Получить данные
+		file.write(reinterpret_cast<char*>(&p), sizeof(p));
+		cout << "Continiue (y/n)? ";
+		cin >> ch;
+	} while (ch == 'y'); // цикл до 'n'
+	file.seekg(0);
+	file.read(reinterpret_cast<char*>(&p), sizeof(p));
+	while (!file.eof())
+	{
+		cout << "\nEmployee:";
+		p.showdata();
+		file.read(reinterpret_cast<char*>(&p), sizeof(p));
+
+	}
+
+	cout << endl;
+	return 0;
+}

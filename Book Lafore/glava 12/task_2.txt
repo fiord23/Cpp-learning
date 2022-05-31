@@ -1,0 +1,40 @@
+//task_2
+// otype.cpp
+// Имитация команды TYPE
+#include <fstream> // для файловых функций
+#include <iostream>
+using namespace std;
+#include <process.h> // для exit()
+const int SIZE = 100;
+int main(int argc, char* argv[])
+{
+	char arr[SIZE];
+	if (argc != 3)
+	{
+		cerr << "\nApplication file1.txt file 2.txt";
+		exit(-1);
+	}
+	char ch; // символ для считывания
+	
+	fstream infile; // создать входной файл
+	fstream outfile;
+	infile.open(argv[1]); // открыть файл
+	outfile.open(argv[2]);
+	if (!infile) // проверить на наличие ошибок
+	{
+		cerr << "\nError open " << argv[1];
+		exit(-1);
+	}
+	if (!outfile) // проверить на наличие ошибок
+	{
+		cerr << "\nError open " << argv[1];
+		exit(-1);
+	}
+
+	infile.read(arr, SIZE);
+	int sz = infile.gcount();
+	outfile.write(arr, sz);
+	infile.close();
+	outfile.close();
+	return 0;
+}

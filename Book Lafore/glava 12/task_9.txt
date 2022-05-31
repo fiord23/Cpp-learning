@@ -1,0 +1,160 @@
+//task_9
+#include <iostream>
+#include <conio.h>
+#include "math.h"
+char dummychar = '/';
+using namespace std;
+
+class fract
+{
+private:
+	int numerator;
+	int denominator;
+public:
+	fract() : numerator(0), denominator(1) {}
+	fract(int n, int d) : numerator(n), denominator(d) { }
+	void getfrac();
+	fract operator+(fract f1);
+	fract operator-(fract f1);
+	fract operator*(fract f1);
+	fract operator/(fract f1);
+	bool operator == (fract f1);
+	bool operator != (fract f1);
+	void fractprint();
+	void lowterms();
+	friend istream& operator>>(istream& s, fract& f);
+	friend ostream& operator<<(ostream& s, fract& f);
+};
+
+
+
+
+
+
+int main()
+{
+	fract fract1, fract2, fractres;
+	char operation;
+
+	do
+	{
+		cin >> fract1 >> operation >>fract2;
+
+		switch (operation)
+		{
+		case '+':
+			fractres = fract1 + fract2; break;
+		case '-':
+			fractres = fract1 - fract2; break;
+
+		case '*':
+			fractres = fract1 * fract2; break;
+
+		case '/':
+			fractres = fract1 / fract2; break;
+		default: cout << endl << "wrong!" << endl;
+		}
+		cout << fractres;
+		cout << endl << " More(y/n)? ";
+	} while (_getche() == 'y');
+	return 1;
+}
+
+void fract::getfrac()
+{
+	cout << endl << "Numerator/Denominator: ";
+	cin >> numerator >> dummychar >> denominator;
+	if (denominator == 0)
+	{
+		cout << endl << "ERROR!" << endl;
+		exit(1);
+	}
+}
+fract fract:: operator+(fract f1)
+{
+
+	int num = 0;
+	int denom = 0;
+	num = numerator * f1.denominator + denominator * f1.numerator;
+	denom = denominator * f1.denominator;
+	return fract(num, denom);
+}
+fract fract:: operator-(fract f1)
+{
+	int num = 0;
+	int denom = 0;
+	num = numerator * f1.denominator - denominator * f1.numerator;
+	denom = denominator * f1.denominator;
+	return fract(num, denom);
+}
+fract fract:: operator*(fract f1)
+{
+	int num = 0;
+	int denom = 0;
+	num = numerator * f1.numerator;
+	denom = denominator * f1.denominator;
+	return fract(num, denom);
+}
+fract fract:: operator/(fract f1)
+{
+	int num = 0;
+	int denom = 0;
+	num = numerator * f1.denominator;
+	denom = denominator * f1.numerator;
+	return fract(num, denom);
+}
+bool fract:: operator == (fract f1)
+{
+	if ((numerator == f1.numerator) && (denominator == f1.denominator))
+		return true;
+	else return false;
+}
+bool fract:: operator != (fract f1)
+{
+	if ((numerator != f1.numerator) || (denominator != f1.denominator))
+		return true;
+	else return false;
+}
+void fract::fractprint()
+{
+	cout << "Result = " << numerator << dummychar << denominator << endl;
+}
+void fract::lowterms() // ñîêðàùåíèå äðîáè
+{
+	long tnum, tden, temp, gcd;
+	tnum = labs(numerator); // èñïîëüçóåì íåîòðèöàòåëüíûå
+	tden = labs(denominator); // çíà÷åíèÿ (íóæåí cmath)
+	if (tden == 0) // ïðîâåðêà çíàìåíàòåëÿ íà 0
+	{
+		cout << "Error denominator!"; exit(1);
+	}
+	else if (tnum == 0) // ïðîâåðêà ÷èñëèòåëÿ íà 0
+	{
+		numerator = 0; denominator = 1; return;
+	}
+	// íàõîæäåíèå íàèáîëüøåãî îáùåãî äåëèòåëÿ
+	while (tnum != 0)
+	{
+		if (tnum < tden) // åñëè ÷èñëèòåëü áîëüøå çíàìåíàòåëÿ,
+		{
+			temp = tnum; tnum = tden; tden = temp;
+		} // ìåíÿåì èõ ìåñòàìè
+		tnum = tnum - tden; // âû÷èòàíèå
+	}
+	gcd = tden; // äåëèì ÷èñëèòåëü è çíàìåíàòåëü íà
+	numerator = numerator / gcd; // ïîëó÷åííûé íàèáîëüøèé îáùèé äåëèòåëü
+	denominator = denominator / gcd;
+}
+
+istream& operator >> (istream& s, fract& f)
+{
+	cout << endl << "Numerator/Denominator: ";
+	s >> f.numerator; s >> dummychar; s >> f.denominator;
+	return s;
+}
+ostream& operator<<(ostream& s, fract& f)
+{
+	f.lowterms();
+	s << f.numerator << dummychar << f.denominator;
+	return s;
+}

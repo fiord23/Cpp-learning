@@ -1,0 +1,56 @@
+//  task_1
+//  englcon.cpp
+// constructors, adds objects using member function
+#include <iostream>
+#include <fstream>
+using namespace std;
+//////////////////////////////////////////////////////////
+class Distance // длина в английской системе
+{
+private:
+	int feet;
+	float inches;
+public: // конструктор без аргументов
+	Distance() : feet(0), inches(0.0)
+	{ }
+	// конструктор с двумя аргументами
+	Distance(int ft, float in) : feet(ft), inches(in)
+	{ }
+	void getdist() // ввод длины пользователем
+	{
+		cout << "\nWrite feets: "; cin >> feet;
+		cout << "Write inches: "; cin >> inches;
+	}
+	void showdist() // вывод длины на экран
+	{
+		cout << feet << "\'-" << inches << '\"';
+	}
+	
+};
+
+//////////////////////////////////////////////////////////
+int main()
+{
+	char ch;
+	Distance dist1;
+	fstream file;
+	file.open("GROUP.TXT", ios::app | ios::out | ios::in | ios::binary);
+	do
+	{
+		cout << endl << "Write distance:";
+		dist1.getdist();
+		file.write(reinterpret_cast<char*>(&dist1), sizeof(dist1));
+		cout << "Continiue (y/n)? ";
+		cin >> ch;
+	} while (ch != 'n');
+	file.seekg(0);
+	file.read(reinterpret_cast<char*>(&dist1), sizeof(dist1));
+	while (!file.eof())
+	{
+		cout << endl << "Distance:";
+		dist1.showdist();
+		file.read(reinterpret_cast<char*>(&dist1), sizeof(dist1));
+	}
+	cout << endl;
+	return 0;
+}

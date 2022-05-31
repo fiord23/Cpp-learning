@@ -1,0 +1,80 @@
+//task_5
+// otype.cpp
+// Имитация команды TYPE
+#include <fstream> // для файловых функций
+#include <iostream>
+using namespace std;
+#include <process.h> // для exit()
+const int SIZE = 30;
+char spa = ' ';
+
+class Time
+{
+private:
+	int hours;
+	int minutes;
+	int seconds;
+public:
+	Time() : hours(0), minutes(0), seconds(0)
+	{}
+	Time(int h, int m, int s) : hours(h), minutes(m), seconds(s)
+	{}
+	void gettime()
+	{
+		while (true)
+		{
+			cout << "\nWrite hours:";
+			cin.unsetf(ios::skipws);
+			cin >> hours;
+			if ((cin.good()) && hours > 0  && hours < 24)
+			{
+				cin.ignore(10, '\n');
+				break;
+			}
+			cin.clear();
+			cout << "Error data hours!";
+			cin.ignore(10, '\n');
+		}
+		while (true)
+		{
+			cout << "\nWrite minutes:";
+			cin.unsetf(ios::skipws);
+			cin >> minutes;
+			if ((cin.good()) && minutes > 0 && minutes < 60)
+			{
+				cin.ignore(10, '\n');
+				break;
+			}
+			cin.clear();
+			cout << "Error data minutes!";
+			cin.ignore(10, '\n');
+		}
+		while (true)
+		{
+			cout << "\nWrite seconds:";
+			cin.unsetf(ios::skipws);
+			cin >> seconds;
+			if ((cin.good()) && seconds > 0 && seconds < 60)
+			{
+				cin.ignore(10, '\n');
+				break;
+			}
+			cin.clear();
+			cout << "Error data seconds!";
+			cin.ignore(10, '\n');
+		}
+
+	}
+	void printtime() const
+	{
+		cout << endl << "time: " << hours << ':' << minutes << ':' << seconds;
+	}
+};
+
+int main()
+{
+	Time t1;
+	t1.gettime();
+	t1.printtime();
+	return 1;
+}
